@@ -1,0 +1,7 @@
+/*
+* adding asterisk to required fields in bootstrap 3
+*/
+.form-group.required .control-label:after {
+  content:"*";
+  color:red;
+}

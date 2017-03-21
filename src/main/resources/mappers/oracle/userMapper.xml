@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.oracle.userMapper">
+	
+	<select id="selectUserCountById" parameterType="String" resultType="int">
+		select count(ID)
+		  from USERS
+		 where ID = #{id}
+	</select>
+	
+	<insert id="insertUser" parameterType="User">
+		<selectKey keyColumn="NUM" keyProperty="num" resultType="Integer" order="BEFORE">
+			select USERS_SEQ.nextval from dual
+		</selectKey>
+		insert into USERS(
+			NUM, ID, PW, F_NAME, S_NAME,EMAIL,IS_AUTHORIZED, IS_ADMIN
+		)
+		values (
+			#{num}, #{id}, #{pw}, #{fName}, #{sName}, #{email}, #{isAuthorized, typeHandler=yesNoTypeHandler}, #{isAdmin, typeHandler=yesNoTypeHandler}
+		)
+	</insert>
+</mapper>
