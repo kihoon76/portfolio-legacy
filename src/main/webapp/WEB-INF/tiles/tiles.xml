@@ -16,6 +16,7 @@
 		<put-list-attribute name="jsList" cascade="true">
 			<add-attribute value="/resources/jquery/1.11.1/jquery.min.js" />
 			<add-attribute value="/resources/bootstrap/3.3.7-1/js/bootstrap.min.js" />
+			<add-attribute value="/resources/js/common.js" />
 		</put-list-attribute>
 		
 		<put-list-attribute name="privateCssList" cascade="true" />
@@ -29,13 +30,23 @@
 	</definition>
 	
 	<!-- 로그인 화면 -->
-	<definition name="loginForm" extends="layout.basic">
-		<put-attribute name="title" value="loginForm" cascade="true"/>
-		<put-attribute name="body" value="/WEB-INF/views/login/loginForm.jsp" />
+	<definition name="signin" extends="layout.basic">
+		<put-attribute name="title" value="signin" cascade="true"/>
+		<put-attribute name="body" value="/WEB-INF/views/signin.jsp" />
+		
+		<put-list-attribute name="privateCssList" cascade="true">
+			<add-attribute value="/resources/css/signin.css" />
+		</put-list-attribute>
+		
+		<put-list-attribute name="privateJsList" cascade="true">
+			<add-attribute value="/resources/js/signin/signin_c.js" />
+			<add-attribute value="/resources/js/signin/signin_v.js" />
+		</put-list-attribute>
 	</definition>
 	
 	<!-- 등록화면 -->
 	<definition name="registForm" extends="layout.basic">
+		<put-attribute name="title" value="regist" cascade="true" />
 		<put-attribute name="body" value="/WEB-INF/views/regist/registForm.jsp" />
 		
 		<put-list-attribute name="privateCssList" cascade="true">
@@ -43,11 +54,16 @@
 		</put-list-attribute>
 		
 		<put-list-attribute name="privateJsList" cascade="true">
-			<add-attribute value="/resources/js/common.js" />
 			<add-attribute value="/resources/js/regist/regist_c.js" />
 			<add-attribute value="/resources/js/regist/regist_m.js" />
 			<add-attribute value="/resources/js/regist/regist_v.js" />
 		</put-list-attribute>
+	</definition>
+	
+	<!-- 내계정 화면 -->
+	<definition name="account" extends="layout.basic">
+		<put-attribute name="title" value="account" cascade="true" />
+		<put-attribute name="body" value="/WEB-INF/views/my/account.jsp" />
 	</definition>
 	
 	<!-- 로그화면 -->

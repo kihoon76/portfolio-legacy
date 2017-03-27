@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -16,10 +17,12 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <!--<li class="active"><a href="#">내페이지</a></li>-->
+        <li><a href="/main">초기화면</a></li>
         <li><a href="#">내페이지</a></li>
         <li><a href="#">프로젝트</a></li>
+        <sec:authorize access="hasRole('ROLE_ADMIN')">
         <li><a href="#">관리</a></li>
-        <li><a href="/admin/accessLog">로그</a></li>
+       	</sec:authorize>
         <li><a href="#">도움말</a></li>
         <!-- <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
@@ -41,8 +44,14 @@
         <button type="submit" class="btn btn-default">Submit</button>
       </form>-->
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/login/loginForm">로그인</a></li>
+      	<sec:authorize access="isAuthenticated()">
+      	<li><a href="/my/account">내계정</a></li>
+       	<li><a href="/logout">로그아웃</a></li>
+      	</sec:authorize>
+      	<sec:authorize access="isAnonymous()">
+        <li><a href="/signin">로그인</a></li>
        	<li><a href="/regist">등록</a></li>
+       	</sec:authorize>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

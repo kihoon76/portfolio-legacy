@@ -13,8 +13,8 @@ public class AccessLogInterceptor extends BaseInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		
-		
-		logger.info("============================================");
+		//http://changpd.blogspot.kr/2013/03/spring.html
+		logger.info("============================================1");
 		return true;
 	}
 }

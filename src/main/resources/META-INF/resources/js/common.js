@@ -6,6 +6,7 @@ var common = function(){
 	function Enum() {}
 	Enum.HttpMethod = {GET: 'GET', POST: 'POST', PUT: 'PUT', DELETE: 'DELETE'};
 	Enum.PATH = 'http://localhost:8088/';
+	Enum.SecurityError = {ID: 'ID', PW: 'PW', AUTH: 'AUTH', ETC: 'ETC'}
 	
 	return {
 		model: {

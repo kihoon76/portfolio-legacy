@@ -10,6 +10,7 @@ public class UserVO {
 	private String fName;
 	private String sName;
 	private String email;
+	
 	private boolean isAuthorized;
 	private boolean isAdmin;
 	
@@ -62,6 +63,4 @@ public class UserVO {
 	public void setAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
-	
-	
 }

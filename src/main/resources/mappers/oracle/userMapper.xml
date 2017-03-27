@@ -19,4 +19,27 @@
 			#{num}, #{id}, #{pw}, #{fName}, #{sName}, #{email}, #{isAuthorized, typeHandler=yesNoTypeHandler}, #{isAdmin, typeHandler=yesNoTypeHandler}
 		)
 	</insert>
+	
+	<select id="selectUserById" parameterType="String" resultMap="RM_selectUserById">
+		select NUM,
+			   ID,
+			   PW,
+			   F_NAME,
+			   S_NAME,
+			   EMAIL,
+			   IS_AUTHORIZED,
+			   IS_ADMIN
+		  from USERS
+		 where ID = #{id}
+	</select>
+	
+	<resultMap type="User" id="RM_selectUserById">
+		<id property="num"					column="NUM"/>
+		<result property="id"				column="id" />
+		<result property="fName"			column="F_NAME" />
+		<result property="sName"			column="S_NAME" />
+		<result property="email"			column="EMAIL" />
+		<result property="isAuthorized"		column="IS_AUTHORIZED"	typeHandler="yesNoTypeHandler" />
+		<result property="isAdmin"			column="IS_ADMIN" typeHandler="yesNoTypeHandler" />
+	</resultMap>
 </mapper>

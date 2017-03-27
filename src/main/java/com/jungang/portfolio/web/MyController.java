@@ -1,19 +1,17 @@
 package com.jungang.portfolio.web;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/login")
-public class LoginController {
+@RequestMapping("/my")
+public class MyController {
 
-	@GetMapping("loginForm")
-	public String getLoginForm(HttpServletRequest request) {
-		
-		return "loginForm";
+	@GetMapping("account")
+	public String accountInit(Model model) {
+		return "account";
 	}
 	
 	
