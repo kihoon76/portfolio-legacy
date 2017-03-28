@@ -3,6 +3,8 @@ package com.jungang.portfolio.security;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	@Autowired
 	UserService userService;
 	
+	@Autowired
+	private HttpServletRequest request;
+	
 	@Override
 	public UserDetailsImpl loadUserByUsername(String username) throws UsernameNotFoundException {
 		logger.info("username ==> " + username);
@@ -29,7 +34,8 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		//회원정보 dao에서 데이터 읽어옴
 		UserVO user = null;
 		try {
-			user = userService.getUser(username);
+			user = userService.getUserAfterLogin(makeUserVO(username));
+			System.err.println(request);
 		}
 		catch(Exception e) {
 			throw new UsernameNotFoundException("접속자 정보 DB에서  문제가 발생했습니다. ");
@@ -63,6 +69,44 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		Role role = new Role();
 		role.setName(name);
 		return role;
+	}
+	
+	private UserVO makeUserVO(String username) {
+		/*
+		 * https://www.lesstif.com/pages/viewpage.action?pageId=20775886
+		 * 
+		 * */
+		 String ip = request.getHeader("X-Forwarded-For");
+		 String header = "X-Forwarded-For";
+		 
+		 if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
+		     ip = request.getHeader("Proxy-Client-IP");
+		     header = "Proxy-Client-IP";
+		 } 
+		 if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
+		     ip = request.getHeader("WL-Proxy-Client-IP");
+		     header = "WL-Proxy-Client-IP";
+		 } 
+		 if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
+		     ip = request.getHeader("HTTP_CLIENT_IP"); 
+		     header = "HTTP_CLIENT_IP";
+		 } 
+		 if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
+		     ip = request.getHeader("HTTP_X_FORWARDED_FOR"); 
+		     header = "HTTP_X_FORWARDED_FOR";
+		 } 
+		 if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
+		     ip = request.getRemoteAddr(); 
+		     header = "RemoteAddr";
+		 }
+		 
+		logger.info("####################################################");
+		logger.info("# " + header + " : " + ip);
+		logger.info("####################################################");
+		UserVO user = new UserVO();
+		user.setId(username);
+		user.setLoginIP(ip);
+		return user;
 	}
 
 }

@@ -21,7 +21,9 @@ public class UserService {
 		return null;
 	}
 	
-	public UserVO getUser(String id) {
-		return userDao.selectUserById(id);
+	public UserVO getUserAfterLogin(UserVO user) {
+		UserVO result = userDao.selectUserById(user.getId());
+		userDao.updateForUserLogin(user);
+		return result;
 	}
 }

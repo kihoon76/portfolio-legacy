@@ -1,5 +1,7 @@
 package com.jungang.portfolio.domain;
 
+import java.util.Date;
+
 import org.apache.ibatis.type.Alias;
 
 @Alias("User")
@@ -10,6 +12,10 @@ public class UserVO {
 	private String fName;
 	private String sName;
 	private String email;
+	private String loginIP;
+	private Date regDate;
+	private Date lastLoginDate;
+	
 	
 	private boolean isAuthorized;
 	private boolean isAdmin;
@@ -62,5 +68,23 @@ public class UserVO {
 	}
 	public void setAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
+	}
+	public String getLoginIP() {
+		return loginIP;
+	}
+	public void setLoginIP(String loginIP) {
+		this.loginIP = loginIP;
+	}
+	public Date getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
+	}
+	public Date getLastLoginDate() {
+		return lastLoginDate;
+	}
+	public void setLastLoginDate(Date lastLoginDate) {
+		this.lastLoginDate = lastLoginDate;
 	}
 }

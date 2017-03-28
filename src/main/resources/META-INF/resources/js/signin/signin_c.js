@@ -6,6 +6,10 @@ $(document).ready(function(v,m){
 		HTTP_METHOD = m.Enum.HttpMethod,
 		SECURITY_ERROR = m.Enum.SecurityError;
 	
+	$('body').showLoading();
+	//loadmask 활성화
+	v.enableLoadMask();
+	
 	$(document).on('click', '#btnAjaxSubmit', function(event) {
 		event.preventDefault();
 		var $form = $('form input');

@@ -13,10 +13,10 @@
 			select USERS_SEQ.nextval from dual
 		</selectKey>
 		insert into USERS(
-			NUM, ID, PW, F_NAME, S_NAME,EMAIL,IS_AUTHORIZED, IS_ADMIN
+			NUM, ID, PW, F_NAME, S_NAME,EMAIL,IS_AUTHORIZED, IS_ADMIN, REG_DATE, LAST_LOGIN_DATE, LOGIN_IP
 		)
 		values (
-			#{num}, #{id}, #{pw}, #{fName}, #{sName}, #{email}, #{isAuthorized, typeHandler=yesNoTypeHandler}, #{isAdmin, typeHandler=yesNoTypeHandler}
+			#{num}, #{id}, #{pw}, #{fName}, #{sName}, #{email}, #{isAuthorized, typeHandler=yesNoTypeHandler}, #{isAdmin, typeHandler=yesNoTypeHandler}, sysdate, sysdate, #{loginIP}
 		)
 	</insert>
 	
@@ -27,6 +27,9 @@
 			   F_NAME,
 			   S_NAME,
 			   EMAIL,
+			   REG_DATE,
+			   LOGIN_IP,
+			   LAST_LOGIN_DATE,
 			   IS_AUTHORIZED,
 			   IS_ADMIN
 		  from USERS
@@ -39,7 +42,17 @@
 		<result property="fName"			column="F_NAME" />
 		<result property="sName"			column="S_NAME" />
 		<result property="email"			column="EMAIL" />
+		<result property="loginIP"			column="LOGIN_IP" />
+		<result property="regDate"			column="REG_DATE" />
+		<result property="lastLoginDate"	column="LAST_LOGIN_DATE" />
 		<result property="isAuthorized"		column="IS_AUTHORIZED"	typeHandler="yesNoTypeHandler" />
 		<result property="isAdmin"			column="IS_ADMIN" typeHandler="yesNoTypeHandler" />
 	</resultMap>
+	
+	<update id="updateForUserLogin" parameterType="User">
+		update USERS
+		   set LOGIN_IP = #{loginIP},
+		   	   LAST_LOGIN_DATE = sysdate
+		 where ID = #{id}
+	</update>
 </mapper>

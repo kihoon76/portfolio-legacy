@@ -36,10 +36,12 @@
 		
 		<put-list-attribute name="privateCssList" cascade="true">
 			<add-attribute value="/resources/css/signin.css" />
+			<add-attribute value="/resources/plugin/loading/showLoading.css" />
 		</put-list-attribute>
 		
 		<put-list-attribute name="privateJsList" cascade="true">
-			<add-attribute value="/resources/js/signin/signin_c.js" />
+			<add-attribute value="/resources/plugin/loading/jquery.showLoading.min.js" />
+			<add-attribute value="/resources/js/common.js" />
 			<add-attribute value="/resources/js/signin/signin_v.js" />
 		</put-list-attribute>
 	</definition>
@@ -64,6 +66,14 @@
 	<definition name="account" extends="layout.basic">
 		<put-attribute name="title" value="account" cascade="true" />
 		<put-attribute name="body" value="/WEB-INF/views/my/account.jsp" />
+		
+		<put-list-attribute name="privateCssList" cascade="true">
+			<add-attribute value="/resources/css/account.css" />
+		</put-list-attribute>
+		
+		<put-list-attribute name="privateJsList" cascade="true">
+			<add-attribute value="/resources/js/account/account_c.js" />
+		</put-list-attribute>
 	</definition>
 	
 	<!-- 로그화면 -->

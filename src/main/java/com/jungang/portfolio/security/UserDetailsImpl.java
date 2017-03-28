@@ -21,6 +21,7 @@ public class UserDetailsImpl implements UserDetails {
 		this.username = username;
 		this.password = password;
 		this.authorities = authorities;
+		this.userVO = userVO;
 		
 	}
 	
@@ -57,5 +58,9 @@ public class UserDetailsImpl implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 		return true;
+	}
+
+	public UserVO getUserVO() {
+		return userVO;
 	}
 }
