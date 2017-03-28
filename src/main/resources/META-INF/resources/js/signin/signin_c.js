@@ -6,9 +6,8 @@ $(document).ready(function(v,m){
 		HTTP_METHOD = m.Enum.HttpMethod,
 		SECURITY_ERROR = m.Enum.SecurityError;
 	
-	$('body').showLoading();
 	//loadmask 활성화
-	v.enableLoadMask();
+	v.enableLoadMask({el:'form', msg:'로그인 중입니다.'});
 	
 	$(document).on('click', '#btnAjaxSubmit', function(event) {
 		event.preventDefault();

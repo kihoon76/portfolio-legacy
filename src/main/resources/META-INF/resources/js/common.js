@@ -57,7 +57,56 @@ var common = function(){
 		view: function(){
 			var emailMode = 'select';
 			var loadmask = false;
-			var $body = null;
+			var loadElStr;
+			var loadTxt = 'Please wait...';
+			var loadEffects = {
+					bounce: 'bounce',
+					rotateplane: 'rotateplane',
+					stretch: 'stretch',
+					orbit: 'orbit',
+					roundBounce: 'roundBounce',
+					win8: 'win8',
+					win8_linear: 'win8_linear',
+					ios: 'ios',
+					facebook: 'facebook',
+					rotation: 'rotation',
+					timer: 'timer',
+					pulse: 'pulse',
+					progressBar: 'progressBar',
+					bouncePulse: 'bouncePulse'
+			};
+			
+			function run_waitMe(el, num, effect){
+				fontSize = '';
+				switch (num) {
+					case 1:
+					maxSize = '';
+					textPos = 'vertical';
+					break;
+					case 2:
+					loadTxt = '';
+					maxSize = 30;
+					textPos = 'vertical';
+					break;
+					case 3:
+					maxSize = 30;
+					textPos = 'horizontal';
+					fontSize = '18px';
+					break;
+				}
+				
+				el.waitMe({
+					effect: effect,
+					text: loadTxt,
+					bg: 'rgba(255,255,255,0.7)',
+					color: '#000',
+					maxSize: maxSize,
+					source: 'img.svg',
+					textPos: textPos,
+					fontSize: fontSize,
+					onClose: function() {}
+				});
+			}
 			
 			return {
 				selectDirectEmailInit: function() {
@@ -102,18 +151,19 @@ var common = function(){
 				isActiveMask: function() {
 					return loadmask;
 				},
-				enableLoadMask: function() {
+				enableLoadMask: function(cfg) {
 					loadmask = true;
-					$body = $('body');
+					loadElStr = cfg.el || 'body';
+					loadTxt = cfg.msg || loadTxt; 
 				},
 				showMask: function() {
 					if(loadmask) {
-						$body.showLoading();
+						run_waitMe($(loadElStr), 1, loadEffects.bounce);
 					}
 				},
 				hideMask: function() {
 					if(loadmask) {
-						$body.hideLoading();
+						$(loadElStr).waitMe('hide');
 					}
 				},
 				getEmailMode: function() {
