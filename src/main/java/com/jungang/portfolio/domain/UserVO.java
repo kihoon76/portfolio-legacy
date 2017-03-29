@@ -17,8 +17,9 @@ public class UserVO {
 	private Date lastLoginDate;
 	
 	
-	private boolean isAuthorized;
-	private boolean isAdmin;
+	private boolean authorized;
+	private boolean admin;
+	private boolean emailDirect;
 	
 	public Integer getNum() {
 		return num;
@@ -57,18 +58,6 @@ public class UserVO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public boolean isAuthorized() {
-		return isAuthorized;
-	}
-	public void setAuthorized(boolean isAuthorized) {
-		this.isAuthorized = isAuthorized;
-	}
-	public boolean isAdmin() {
-		return isAdmin;
-	}
-	public void setAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
-	}
 	public String getLoginIP() {
 		return loginIP;
 	}
@@ -86,5 +75,23 @@ public class UserVO {
 	}
 	public void setLastLoginDate(Date lastLoginDate) {
 		this.lastLoginDate = lastLoginDate;
+	}
+	public boolean isEmailDirect() {
+		return emailDirect;
+	}
+	public void setEmailDirect(boolean emailDirect) {
+		this.emailDirect = emailDirect;
+	}
+	public boolean isAuthorized() {
+		return authorized;
+	}
+	public void setAuthorized(boolean authorized) {
+		this.authorized = authorized;
+	}
+	public boolean isAdmin() {
+		return admin;
+	}
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
 	}
 }

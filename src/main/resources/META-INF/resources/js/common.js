@@ -7,7 +7,7 @@ var common = function(){
 	Enum.HttpMethod = {GET: 'GET', POST: 'POST', PUT: 'PUT', DELETE: 'DELETE'};
 	Enum.PATH = 'http://localhost:8088/';
 	Enum.SecurityError = {ID: 'ID', PW: 'PW', AUTH: 'AUTH', ETC: 'ETC'}
-	
+	Enum.Alert = {SUCCESS: 'success', INFO: 'info', WARNING: 'warning', DANGER: 'danger'}
 	return {
 		model: {
 			ajax: function(params) {
@@ -53,11 +53,17 @@ var common = function(){
 				});
 			},
 			Enum: Enum,
+			isNull: function($el) {
+				return ($el.get(0) == undefined);
+			},
+			isNotNull: function($el) {
+				return !common.model.isNull($el)
+			}
 		},
 		view: function(){
-			var emailMode = 'select';
+			var emailDirect = false;
 			var loadmask = false;
-			var loadElStr;
+			var $loadEl;
 			var loadTxt = 'Please wait...';
 			var loadEffects = {
 					bounce: 'bounce',
@@ -76,7 +82,9 @@ var common = function(){
 					bouncePulse: 'bouncePulse'
 			};
 			
-			function run_waitMe(el, num, effect){
+			var isActiveAlertMsg = false;
+			
+			function run_waitMe(num, effect){
 				fontSize = '';
 				switch (num) {
 					case 1:
@@ -95,7 +103,7 @@ var common = function(){
 					break;
 				}
 				
-				el.waitMe({
+				$loadEl.waitMe({
 					effect: effect,
 					text: loadTxt,
 					bg: 'rgba(255,255,255,0.7)',
@@ -109,9 +117,30 @@ var common = function(){
 			}
 			
 			return {
-				selectDirectEmailInit: function() {
-					//selectbox class에 EMAIL 추가
-					//input text class에 EMAIL 추가
+				viewEmailInit: function(m) {
+					/* selectbox class에 EMAIL 추가
+					 * input text class에 EMAIL 추가
+					 * <select class="form-control EMAIL">
+					 * <input type="text" class="form-control email-direct EMAIL" />
+					 * <div class="form-group" data-email-direct="true/false" id="dvEmail">(수정폼)
+					 * */
+					
+					//수정폼에 있을때
+					if(m) {
+						var $dvEmail = $('#dvEmail');
+						if(common.model.isNotNull($dvEmail)) {
+							var dataValue = $dvEmail.data('emailDirect'); 
+							if(dataValue == undefined) {
+								throw new Error('ID가 dvEmail인 div에 data-email-direct="[true|false]가 존재하지 않습니다"');
+							};
+							
+							emailDirect = dataValue;
+						}
+						else {
+							throw new Error('ID가 dvEmail인 요소가 존재하지 않습니다.');
+						}
+					}
+					
 					$(document).on('change', 'select.EMAIL', function(event) {
 						console.log("##### 직접입력 선택 #####");
 						var email = $(this).val();
@@ -129,10 +158,10 @@ var common = function(){
 							//if($.nodeName($txtParent, 'div')) {
 							$txtParent.toggle();
 							//}
-							emailMode = 'input';
+							emailDirect = true;
 						}
 						else {
-							emailMode = 'select';
+							emailDirect = false;
 						}
 					});
 				
@@ -145,7 +174,7 @@ var common = function(){
 						$selEmail.val('google.com');
 						$selEmail.parent().toggle();
 						
-						emailMode = 'select';
+						emailDirect = false;
 					});
 				},
 				isActiveMask: function() {
@@ -153,22 +182,65 @@ var common = function(){
 				},
 				enableLoadMask: function(cfg) {
 					loadmask = true;
-					loadElStr = cfg.el || 'body';
+					$loadEl = cfg.el || $('body');
 					loadTxt = cfg.msg || loadTxt; 
 				},
 				showMask: function() {
 					if(loadmask) {
-						run_waitMe($(loadElStr), 1, loadEffects.bounce);
+						run_waitMe(1, loadEffects.bounce);
 					}
 				},
 				hideMask: function() {
 					if(loadmask) {
-						$(loadElStr).waitMe('hide');
+						$loadEl.waitMe('hide');
 					}
 				},
-				getEmailMode: function() {
-					return emailMode;
+				isEmailDirect: function() {
+					return emailDirect;
 				},
+				alertMsgInit: function() {
+					var elStr = '<div class="msg-alert">' +
+					   			'<div class="alert alert-danger collapse" id="dvMsg">' +
+					   			//'<a href="#" class="close" data-dismiss="alert">&times;</a>' +
+					   			'<strong id="strongAlert"></strong><span id="msgDetail"></span>' +
+					   			'</div>' +
+					   			'</div>';
+					
+					$('nav').after(elStr);
+					isActiveAlertMsg = true;
+				},
+				viewAlertMsg: function(alert, msg) {
+					if(isActiveAlertMsg) {
+						var alertEnum = common.model.Enum.Alert;
+						var $dvMsg = $('#dvMsg');
+						switch(alert) {
+						case alertEnum.SUCCESS:
+							$dvMsg.attr('class', 'alert alert-success collapse');
+							$('#strongAlert').html('성공!! ');
+							break;
+						case alertEnum.DANGER:
+							$dvMsg.attr('class', 'alert alert-danger collapse');
+							$('#strongAlert').html('실패!! ');
+							break;
+						case alertEnum.WARNING:
+							$dvMsg.attr('class', 'alert alert-warning collapse');
+							$('#strongAlert').html('경고!! ');
+							break;
+						case alertEnum.INFO:
+							$dvMsg.attr('class', 'alert alert-info collapse');
+							$('#strongAlert').html('알림!! ');
+							break;
+						default:
+							$dvMsg.attr('class', 'alert alert-danger collapse');
+							$('#strongAlert').html('실패!! ');
+							break;
+						}
+						
+						$('#msgDetail').html(msg);
+						$dvMsg.show();
+					}
+					
+				}
 			}
 		}(),
 		controller: {},

@@ -13,10 +13,10 @@
 			select USERS_SEQ.nextval from dual
 		</selectKey>
 		insert into USERS(
-			NUM, ID, PW, F_NAME, S_NAME,EMAIL,IS_AUTHORIZED, IS_ADMIN, REG_DATE, LAST_LOGIN_DATE, LOGIN_IP
+			NUM, ID, PW, F_NAME, S_NAME,EMAIL,IS_AUTHORIZED, IS_ADMIN, REG_DATE, LAST_LOGIN_DATE, LOGIN_IP, IS_EMAIL_DIRECT
 		)
 		values (
-			#{num}, #{id}, #{pw}, #{fName}, #{sName}, #{email}, #{isAuthorized, typeHandler=yesNoTypeHandler}, #{isAdmin, typeHandler=yesNoTypeHandler}, sysdate, sysdate, #{loginIP}
+			#{num}, #{id}, #{pw}, #{fName}, #{sName}, #{email}, #{isAuthorized, typeHandler=yesNoTypeHandler}, #{isAdmin, typeHandler=yesNoTypeHandler}, sysdate, sysdate, #{loginIP}, #{isEmailDirect, typeHandler=yesNoTypeHandler}
 		)
 	</insert>
 	
@@ -27,6 +27,7 @@
 			   F_NAME,
 			   S_NAME,
 			   EMAIL,
+			   IS_EMAIL_DIRECT,
 			   REG_DATE,
 			   LOGIN_IP,
 			   LAST_LOGIN_DATE,
@@ -42,11 +43,12 @@
 		<result property="fName"			column="F_NAME" />
 		<result property="sName"			column="S_NAME" />
 		<result property="email"			column="EMAIL" />
+		<result property="emailDirect"		column="IS_EMAIL_DIRECT" typeHandler="yesNoTypeHandler" />
 		<result property="loginIP"			column="LOGIN_IP" />
 		<result property="regDate"			column="REG_DATE" />
 		<result property="lastLoginDate"	column="LAST_LOGIN_DATE" />
-		<result property="isAuthorized"		column="IS_AUTHORIZED"	typeHandler="yesNoTypeHandler" />
-		<result property="isAdmin"			column="IS_ADMIN" typeHandler="yesNoTypeHandler" />
+		<result property="authorized"		column="IS_AUTHORIZED"	typeHandler="yesNoTypeHandler" />
+		<result property="admin"			column="IS_ADMIN" typeHandler="yesNoTypeHandler" />
 	</resultMap>
 	
 	<update id="updateForUserLogin" parameterType="User">

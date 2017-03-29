@@ -1,4 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<c:set var="emailAccount" value="${fn:split(user.email, '@')[0]}" />
+<c:set var="emailVender" value="${fn:split(user.email, '@')[1]}" />
+<c:set var="isEmailDirect" value="${user.emailDirect}" />
+
 <div class="container">
 <div class="row">
 <div class="well">
@@ -20,22 +27,22 @@
 				    	<input type="text" class="form-control" id="fName" name="fName" placeholder="성" value="${user.fName}">
 				    </div>
 				</div>
-				<div class="form-group">
+				<div class="form-group" data-email-direct="${isEmailDirect}" id="dvEmail">
             		<label class="control-label col-sm-2" for="email">이메일:</label>
             		<div class="col-sm-5">
-            			<input type="text" class="form-control" id="email1" placeholder="이메일">
+            			<input type="text" class="form-control" id="emailAccount" placeholder="이메일" value='<c:out value="${emailAccount}" />'>
             		</div>
-            		<div class="col-sm-5">
-			            <select class="form-control EMAIL">
+            		<div class="col-sm-5" <c:if test="${isEmailDirect eq true}">style="display:none;"</c:if>>
+			            <select class="form-control EMAIL" id="selEmailVender">
 			                <option value="google.com" selected>google.com</option>
 			                <option value="naver.com">naver.com</option>
 			                <option value="direct">직접입력</option>
 			            </select>
 		            </div>
-		            <div class="col-sm-5 input-group input-group-sm" style="display:none;">
-		            	<input type="text" class="form-control EMAIL" placeholder="직접입력" style="height:34px">
+		            <div class="col-sm-5 input-group input-group-sm" <c:if test="${isEmailDirect ne true}">style="display:none;"</c:if>>
+		            	<input type="text" class="form-control email-direct EMAIL" placeholder="직접입력" value="${emailVender}" id="txtEmailVender">
 		            	<span class="input-group-btn">
-        					<button type="button" class="btn btn-default EMAIL" style="height:34px">GO</button>
+        					<button type="button" class="btn btn-default email-direct-btn EMAIL">GO</button>
     					</span>
 		            </div>
 		        </div>
@@ -45,27 +52,28 @@
 						<button type="button" class="btn btn-primary" id="btnSave">저장</button>
 					</div>
 				</div>
+				<input type="hidden" id="hdnEmail" name="email" />
 				</form>
             </div>
             <div class="col-md-5">
             	<table>
             		<tr>
-            			<td>내 계정</td>
+            			<th>내 계정</th>
             		</tr>
             		<tr>
             			<td>로그인:${user.id}</td>
             		</tr>
             		<tr>
-            			<td>등록: ${user.regDate}</td>
+            			<td>등록: <fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${user.regDate}"/>   </td>
             		</tr>
             		<tr>
-            			<td>마지막 로그인 날짜:${user.lastLoginDate}</td>
+            			<td>마지막 로그인 날짜:<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${user.lastLoginDate}" /></td>
             		</tr>
             		<tr>
             			<td>마지막 접속 IP :${user.loginIP}</td>
             		</tr>
             		<tr>
-            			<td>나의 계정삭제</td>
+            			<td><a href="#"><span class="glyphicon glyphicon-trash">나의계정삭제</span></a></td>
             		</tr>
             	</table>
             </div>

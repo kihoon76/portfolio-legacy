@@ -1,11 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
-<!-- <div id="tooltip" data-toggle="tooltip" data-placement="right" data-html="true" title="test"></div> -->
-<div class="msg-alert">
-	<div class="alert alert-danger collapse" id="dvMsg">
-	<a href="#" class="close" data-dismiss="alert">&times;</a>
-	<strong>Error!</strong><span id="msgDetail"></span>
-	</div>
-</div>
 <div class="container">
 <div class="row">
 <div class="col-lg-6 col-lg-offset-3">
