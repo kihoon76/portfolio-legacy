@@ -11,10 +11,12 @@
             	<div class="form-group">
 					<fieldset>
 				    	<legend>검색조건</legend>
-					    <label class="control-label" for="status">상태 : </label>
-			    		<select id="status" class="selectpicker">
+					    <label class="control-label col-sm-2" for="status">상태 : </label>
+					    <div class="col-sm-4">
+			    		<select id="status" class="form-control">
 			    			<option>test</option>
 			    		</select>
+			    		</div>
 				  	</fieldset>
 			  	</div>
 				</form>
