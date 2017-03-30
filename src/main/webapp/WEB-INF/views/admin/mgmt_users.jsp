@@ -12,10 +12,14 @@
 					<fieldset>
 				    	<legend>검색조건</legend>
 					    <label class="control-label col-sm-2" for="status">상태 : </label>
-					    <div class="col-sm-4">
+					    <div class="col-sm-2">
 			    		<select id="status" class="form-control">
 			    			<option>test</option>
 			    		</select>
+			    		</div>
+			    		<label class="control-label col-sm-2" for="status">사용자 : </label>
+			    		<div class="col-sm-6">
+			    			<input type="text" class="form-control" id="emailAccount" placeholder="이메일" value="">
 			    		</div>
 				  	</fieldset>
 			  	</div>
