@@ -32,17 +32,19 @@
             		<div class="col-sm-5">
             			<input type="text" class="form-control" id="emailAccount" placeholder="이메일" value='<c:out value="${emailAccount}" />'>
             		</div>
-            		<div class="col-sm-5" <c:if test="${isEmailDirect eq true}">style="display:none;"</c:if>>
+            		<div class="col-sm-4 input-group mb-2 mr-sm-2 mb-sm-0" <c:if test="${isEmailDirect eq true}">style="display:none;"</c:if>>
+            			<div class="input-group-addon">@</div>
 			            <select class="form-control EMAIL" id="selEmailVender">
 			                <option value="google.com" selected>google.com</option>
 			                <option value="naver.com">naver.com</option>
 			                <option value="direct">직접입력</option>
 			            </select>
 		            </div>
-		            <div class="col-sm-5 input-group input-group-sm" <c:if test="${isEmailDirect ne true}">style="display:none;"</c:if>>
+		            <div class="col-sm-4 input-group input-group-sm" <c:if test="${isEmailDirect ne true}">style="display:none;"</c:if>>
+		            	<div class="input-group-addon">@</div>
 		            	<input type="text" class="form-control email-direct EMAIL" placeholder="직접입력" value="${emailVender}" id="txtEmailVender">
 		            	<span class="input-group-btn">
-        					<button type="button" class="btn btn-default email-direct-btn EMAIL">GO</button>
+        					<button type="button" class="btn btn-default email-direct-btn EMAIL"><span class="glyphicon glyphicon-repeat"></span></button>
     					</span>
 		            </div>
 		        </div>
@@ -53,6 +55,7 @@
 					</div>
 				</div>
 				<input type="hidden" id="hdnEmail" name="email" />
+				<input type="hidden" id="hdnEmailDirect" name="emailDirect" />
 				</form>
             </div>
             <div class="col-md-5">

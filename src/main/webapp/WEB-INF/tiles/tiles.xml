@@ -84,7 +84,7 @@
 	</definition>
 	
 	<!-- 내계정 화면 -->
-	<definition name="account" extends="layout.basic">
+	<definition name="account" extends="layout.loadmask">
 		<put-attribute name="title" value="account" cascade="true" />
 		<put-attribute name="body" value="/WEB-INF/views/my/account.jsp" />
 		
@@ -94,6 +94,26 @@
 		
 		<put-list-attribute name="privateJsList" cascade="true">
 			<add-attribute value="/resources/js/account/account_c.js" />
+		</put-list-attribute>
+	</definition>
+	
+	<!-- 관리화면 -->
+	<definition name="mgmt" extends="layout.basic">
+		<put-attribute name="title" value="관리" cascade="true" />
+		<put-attribute name="body" value="/WEB-INF/views/admin/mgmt.jsp" />
+	</definition>
+	
+	<!-- 관리화면(사용자) -->
+	<definition name="mgmt/users" extends="layout.basic">
+		<put-attribute name="title" value="관리(사용자)" cascade="true" />
+		<put-attribute name="body" value="/WEB-INF/views/admin/mgmt_users.jsp" />
+		
+		<put-list-attribute name="privateCssList" cascade="true">
+			<add-attribute value="/resources/css/mgmt/users.css" />
+		</put-list-attribute>
+		
+		<put-list-attribute name="privateJsList" cascade="true">
+			<add-attribute value="/resources/js/mgmt/users.js" />
 		</put-list-attribute>
 	</definition>
 	

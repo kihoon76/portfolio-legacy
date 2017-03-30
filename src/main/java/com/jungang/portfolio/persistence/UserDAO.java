@@ -6,4 +6,5 @@ public interface UserDAO {
 
 	UserVO selectUserById(String id);
 	int updateForUserLogin(UserVO user);
+	int updateUserAccount(UserVO user);
 }

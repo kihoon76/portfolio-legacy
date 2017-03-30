@@ -57,4 +57,13 @@
 		   	   LAST_LOGIN_DATE = sysdate
 		 where ID = #{id}
 	</update>
+	
+	<update id="updateUserAccount" parameterType="User">
+		update USERS
+		   set S_NAME = #{sName},
+		   	   F_NAME = #{fName},
+		   	   EMAIL = #{email},
+		   	   IS_EMAIL_DIRECT = #{emailDirect, typeHandler=yesNoTypeHandler}
+		 where ID = #{id}
+	</update>
 </mapper>

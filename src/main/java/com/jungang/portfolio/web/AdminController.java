@@ -25,4 +25,14 @@ public class AdminController {
 		model.addAttribute("logs", list);
 		return "accessLog";
 	}
+	
+	@GetMapping("mgmt")
+	public String config() {
+		return "mgmt";
+	}
+	
+	@GetMapping("mgmt/users")
+	public String user() {
+		return "mgmt/users";
+	}
 }

@@ -26,4 +26,8 @@ public class UserService {
 		userDao.updateForUserLogin(user);
 		return result;
 	}
+	
+	public boolean modifyAccount(UserVO user) {
+		return userDao.updateUserAccount(user) == 1;
+	}
 }

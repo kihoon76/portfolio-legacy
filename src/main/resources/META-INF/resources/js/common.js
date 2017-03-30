@@ -25,7 +25,9 @@ var common = function(){
 					method: params.method || common.model.Enum.HttpMethod.POST,
 					complete: function() {
 						console.log("###### Ajax Completed ######");
-						if(common.view.isActiveMask()) common.view.hideMask();
+						var hideMask = (params.hideMask == undefined)?true:params.hideMask;
+						
+						if(common.view.isActiveMask() && hideMask) common.view.hideMask();
 					},
 					context: params.context || document.body,
 					data: params.data,
@@ -85,11 +87,13 @@ var common = function(){
 			var isActiveAlertMsg = false;
 			
 			function run_waitMe(num, effect){
+				//https://github.com/vadimsva/waitMe/blob/gh-pages/index.html
 				fontSize = '';
 				switch (num) {
 					case 1:
 					maxSize = '';
 					textPos = 'vertical';
+					fontSize = '25px';
 					break;
 					case 2:
 					loadTxt = '';
@@ -106,7 +110,7 @@ var common = function(){
 				$loadEl.waitMe({
 					effect: effect,
 					text: loadTxt,
-					bg: 'rgba(255,255,255,0.7)',
+					bg: 'rgba(255,255,255,0.9)',
 					color: '#000',
 					maxSize: maxSize,
 					source: 'img.svg',
@@ -117,6 +121,9 @@ var common = function(){
 			}
 			
 			return {
+				viewEmailModifyInit: function() {
+					common.view.viewEmailInit('modify')
+				},
 				viewEmailInit: function(m) {
 					/* selectbox class에 EMAIL 추가
 					 * input text class에 EMAIL 추가

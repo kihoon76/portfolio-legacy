@@ -25,6 +25,8 @@ public class UserValidator implements Validator{
 //		}
 		
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "id", "valid.id");
+		//ValidationUtils.rejectIfEmptyOrWhitespace(errors, field, errorCode);
+		
 		
 	}
 

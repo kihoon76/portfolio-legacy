@@ -11,7 +11,7 @@ $(document).ready(function(v,m){
 		//div message
 		v.alertMsgInit();
 		//loadmask 활성화
-		v.enableLoadMask({el:$('form'), msg:'로그인 중입니다.'});
+		v.enableLoadMask({el:$('body'), msg:'로그인 중입니다'});
 		
 		$(document).on('click', '#btnAjaxSubmit', function(event) {
 			event.preventDefault();
@@ -20,6 +20,7 @@ $(document).ready(function(v,m){
 			m.ajax({
 				url: ROOT_PATH + 'login',
 				method: HTTP_METHOD.POST,
+				hideMask: false,
 				dataType: 'json',
 				data: $form.serialize(),
 				success: function(data, textStatus, jqXHR) {
@@ -49,6 +50,7 @@ $(document).ready(function(v,m){
 						}
 						
 						v.viewAlertMsg(ALERT.DANGER, msg);
+						v.hideMask();
 					}
 				},
 				error: function() {

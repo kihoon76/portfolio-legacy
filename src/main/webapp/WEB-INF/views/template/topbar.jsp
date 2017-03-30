@@ -21,7 +21,7 @@
         <li><a href="#"><span class="glyphicon glyphicon-home">내페이지</span></a></li>
         <li><a href="#"><span class="glyphicon glyphicon-list-alt">프로젝트</span></a></li>
         <sec:authorize access="hasRole('ROLE_ADMIN')">
-        <li><a href="#"><span class="glyphicon glyphicon-cog">관리</span></a></li>
+        <li><a href="/admin/mgmt"><span class="glyphicon glyphicon-cog">관리</span></a></li>
        	</sec:authorize>
         <li><a href="#"><span class="glyphicon glyphicon-question-sign">도움말</span></a></li>
         <!-- <li class="dropdown">

@@ -25,4 +25,9 @@ public class UserDAOImpl implements UserDAO {
 		return oracleSqlSession.update(namespace + ".updateForUserLogin", user);
 	}
 
+	@Override
+	public int updateUserAccount(UserVO user) {
+		return oracleSqlSession.update(namespace + ".updateUserAccount", user);
+	}
+
 }

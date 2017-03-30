@@ -18,17 +18,20 @@ $(document).ready(function(m,v){
 		}
 		
 		$('#hdnEmail').val(emailAccount + '@' + emailVender);
+		$('#hdnEmailDirect').val(v.isEmailDirect());
 	}
 	
 	return function() {
-		v.viewEmailInit('m');
+		v.viewEmailModifyInit();
 		v.alertMsgInit();
+		
+		v.enableLoadMask({el:$('body'), msg:'사용자 정보 수정중입니다 '});
 		
 		$(document).on('click', '#btnSave', function(event){
 			var $form = $('form');
 			makeEmailData();
-			console.log($form.serialize());
-			return;
+			//console.log($form.serialize());
+			//return;
 			m.ajax({
 				url: ROOT_PATH + 'my/account/modify',
 				method: HTTP_METHOD.POST,
@@ -40,7 +43,7 @@ $(document).ready(function(m,v){
 						v.viewAlertMsg(ALERT.SUCCESS, '사용자 정보가 성공적으로 변경되었습니다.');
 					}
 					else {
-						v.viewAlertMsg(ALERT.DANGER, '');
+						v.viewAlertMsg(ALERT.DANGER, '사용자 정보 변경시 오류가 발생했습니다.');
 					}
 				},
 				error: function() {
