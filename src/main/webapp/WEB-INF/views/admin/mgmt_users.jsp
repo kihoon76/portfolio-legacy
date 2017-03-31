@@ -79,6 +79,17 @@
             			<td><button class="btn btn-default btn-xs">일감유형</button></td>
             		</tr>
             	</table>
+            	<%--
+            	<jsp:include page="file.jsp" >
+				  <jsp:param name="firstname" value="Chaitanya" />
+				  <jsp:param name="middlename" value="Pratap" />
+				  <jsp:param name="lastname" value="Singh" />
+				</jsp:include>
+				
+				${param.firstname}<br>
+				${param.middlename}<br>
+				${param.lastname}
+            	 --%>
             </div>
         </div> 
 
