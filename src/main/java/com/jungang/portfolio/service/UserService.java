@@ -40,4 +40,8 @@ public class UserService {
 	public List<UserVO> getUsers() {
 		return userDao.selectUsers();
 	}
+
+	public List<UserVO> searchUserByAuthOrName(Map<String, String> map) {
+		return userDao.selectUserByAuthOrName(map);
+	}
 }

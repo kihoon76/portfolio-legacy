@@ -1,8 +1,11 @@
 package com.jungang.portfolio.web;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,6 +44,23 @@ public class AdminController {
 	public String user(Model model) {
 		model.addAttribute("map", userService.getUserAuthStatistics());
 		model.addAttribute("users", userService.getUsers());
+		model.addAttribute("status", "A");
+		return "mgmt/users";
+	}
+	
+	@GetMapping("mgmt/users/search")
+	public String search(HttpServletRequest request, Model model) {
+		String status = request.getParameter("status");
+		String userName = request.getParameter("username");
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("status", status);
+		map.put("userName", userName);
+		
+		model.addAttribute("map", userService.getUserAuthStatistics());
+		model.addAttribute("users", userService.searchUserByAuthOrName(map));
+		model.addAttribute("status", status);
+		model.addAttribute("userName", userName);
 		return "mgmt/users";
 	}
 }

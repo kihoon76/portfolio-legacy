@@ -12,4 +12,5 @@ public interface UserDAO {
 	int updateUserAccount(UserVO user);
 	Map<String, String> selectUserAuthStatistics();
 	List<UserVO> selectUsers();
+	List<UserVO> selectUserByAuthOrName(Map<String, String> map);
 }

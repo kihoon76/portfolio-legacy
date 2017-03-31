@@ -23,22 +23,6 @@
 		)
 	</insert>
 	
-<!-- 	<select id="selectUserById" parameterType="String" resultMap="RM_selectUserById"> -->
-<!-- 		select NUM, -->
-<!-- 			   ID, -->
-<!-- 			   PW, -->
-<!-- 			   F_NAME, -->
-<!-- 			   S_NAME, -->
-<!-- 			   EMAIL, -->
-<!-- 			   IS_EMAIL_DIRECT, -->
-<!-- 			   REG_DATE, -->
-<!-- 			   LOGIN_IP, -->
-<!-- 			   LAST_LOGIN_DATE, -->
-<!-- 			   IS_AUTHORIZED, -->
-<!-- 			   IS_ADMIN -->
-<!-- 		  from USERS -->
-<!-- 		 where ID = #{id} -->
-<!-- 	</select> -->
 	<select id="selectUserById" parameterType="String" resultMap="RM_Users">
 		select <include refid="users_all_column" />
 		  from USERS
@@ -48,6 +32,19 @@
 	<select id="selectUsers" resultMap="RM_Users">
 		select <include refid="users_all_column" />
 		  from USERS
+	</select>
+	
+	<select id="selectUserByAuthOrName" parameterType="map" resultMap="RM_Users">
+		select <include refid="users_all_column" />
+		  from USERS
+		  <where>
+		  	<if test="status != 'A'.toString()">
+		  	and IS_AUTHORIZED = #{status}
+		  	</if>
+		  	<if test="userName != null and userName != ''.toString()">
+		  	and S_NAME like '%' || #{userName} || '%'
+		  	</if>
+		  </where>
 	</select>
 	
 	<resultMap type="User" id="RM_Users">
