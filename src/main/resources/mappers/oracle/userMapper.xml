@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.oracle.userMapper">
+	<sql id="users_all_column">
+		NUM,ID,PW,F_NAME,S_NAME,EMAIL,IS_EMAIL_DIRECT,REG_DATE,LOGIN_IP,LAST_LOGIN_DATE,IS_AUTHORIZED,IS_ADMIN
+	</sql>
 	
 	<select id="selectUserCountById" parameterType="String" resultType="int">
 		select count(ID)
@@ -20,24 +23,34 @@
 		)
 	</insert>
 	
-	<select id="selectUserById" parameterType="String" resultMap="RM_selectUserById">
-		select NUM,
-			   ID,
-			   PW,
-			   F_NAME,
-			   S_NAME,
-			   EMAIL,
-			   IS_EMAIL_DIRECT,
-			   REG_DATE,
-			   LOGIN_IP,
-			   LAST_LOGIN_DATE,
-			   IS_AUTHORIZED,
-			   IS_ADMIN
+<!-- 	<select id="selectUserById" parameterType="String" resultMap="RM_selectUserById"> -->
+<!-- 		select NUM, -->
+<!-- 			   ID, -->
+<!-- 			   PW, -->
+<!-- 			   F_NAME, -->
+<!-- 			   S_NAME, -->
+<!-- 			   EMAIL, -->
+<!-- 			   IS_EMAIL_DIRECT, -->
+<!-- 			   REG_DATE, -->
+<!-- 			   LOGIN_IP, -->
+<!-- 			   LAST_LOGIN_DATE, -->
+<!-- 			   IS_AUTHORIZED, -->
+<!-- 			   IS_ADMIN -->
+<!-- 		  from USERS -->
+<!-- 		 where ID = #{id} -->
+<!-- 	</select> -->
+	<select id="selectUserById" parameterType="String" resultMap="RM_Users">
+		select <include refid="users_all_column" />
 		  from USERS
 		 where ID = #{id}
 	</select>
 	
-	<resultMap type="User" id="RM_selectUserById">
+	<select id="selectUsers" resultMap="RM_Users">
+		select <include refid="users_all_column" />
+		  from USERS
+	</select>
+	
+	<resultMap type="User" id="RM_Users">
 		<id property="num"					column="NUM"/>
 		<result property="id"				column="id" />
 		<result property="fName"			column="F_NAME" />
@@ -66,4 +79,18 @@
 		   	   IS_EMAIL_DIRECT = #{emailDirect, typeHandler=yesNoTypeHandler}
 		 where ID = #{id}
 	</update>
+	
+	<resultMap type="java.util.HashMap" id="RM_selectUserAuthStatistics">
+		<result javaType="java.lang.String"	column="AUTH"	property="auth" />
+		<result javaType="java.lang.String" column="CNT"	property="cnt" />
+	</resultMap>
+	
+	<select id="selectUserAuthStatistics" resultMap="RM_selectUserAuthStatistics">
+		select is_authorized as AUTH,
+			   count(is_authorized) as CNT
+  		  from USERS
+      	  group by is_authorized  
+	</select>
+	
+	
 </mapper>

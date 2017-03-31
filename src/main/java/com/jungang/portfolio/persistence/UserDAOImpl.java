@@ -1,5 +1,9 @@
 package com.jungang.portfolio.persistence;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.apache.ibatis.session.SqlSession;
@@ -30,4 +34,23 @@ public class UserDAOImpl implements UserDAO {
 		return oracleSqlSession.update(namespace + ".updateUserAccount", user);
 	}
 
+	@Override
+	public Map<String, String> selectUserAuthStatistics() {
+		Map<String, String> resultMap = null;
+		
+		List<Map<String, String>> list = oracleSqlSession.selectList(namespace + ".selectUserAuthStatistics");
+		if(list != null  && list.size() > 0) {
+			resultMap = new HashMap<String, String>();
+			for(Map<String, String> m : list) {
+				resultMap.put(m.get("auth"), m.get("cnt"));
+			}
+		}
+		
+		return resultMap;
+	}
+
+	@Override
+	public List<UserVO> selectUsers() {
+		return oracleSqlSession.selectList(namespace + ".selectUsers");
+	}
 }

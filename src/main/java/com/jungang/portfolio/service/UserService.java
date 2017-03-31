@@ -1,6 +1,7 @@
 package com.jungang.portfolio.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -29,5 +30,14 @@ public class UserService {
 	
 	public boolean modifyAccount(UserVO user) {
 		return userDao.updateUserAccount(user) == 1;
+	}
+
+	public Map<String, String> getUserAuthStatistics() {
+		return userDao.selectUserAuthStatistics();
+		
+	}
+
+	public List<UserVO> getUsers() {
+		return userDao.selectUsers();
 	}
 }
