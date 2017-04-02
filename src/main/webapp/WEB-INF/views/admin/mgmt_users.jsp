@@ -68,31 +68,11 @@
 				</form>
             </div>
             <div class="col-md-3">
-            	<table class="table">
-            		<tr>
-            			<th><button class="btn btn-default btn-xs">프로젝트</button></th>
-            		</tr>
-            		<tr>
-            			<td><button class="btn btn-danger btn-xs">사용자</button></td>
-            		</tr>
-            		<tr>
-            			<td><button class="btn btn-default btn-xs">일감유형</button></td>
-            		</tr>
-            	</table>
-            	<%--
-            	<jsp:include page="file.jsp" >
-				  <jsp:param name="firstname" value="Chaitanya" />
-				  <jsp:param name="middlename" value="Pratap" />
-				  <jsp:param name="lastname" value="Singh" />
-				</jsp:include>
-				
-				${param.firstname}<br>
-				${param.middlename}<br>
-				${param.lastname}
-            	 --%>
+            <jsp:include page="../include/inc_mgmt_category.jsp">
+            	<jsp:param name="category" value="users"/>
+            </jsp:include>
             </div>
         </div> 
-
   	</div>
 </div>
 </div>
