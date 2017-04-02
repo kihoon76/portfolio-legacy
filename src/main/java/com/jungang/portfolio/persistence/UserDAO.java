@@ -13,4 +13,5 @@ public interface UserDAO {
 	Map<String, String> selectUserAuthStatistics();
 	List<UserVO> selectUsers();
 	List<UserVO> selectUserByAuthOrName(Map<String, String> map);
+	boolean updateUserUnlock(String userNum);
 }

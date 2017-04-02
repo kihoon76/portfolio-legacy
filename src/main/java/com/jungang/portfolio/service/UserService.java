@@ -44,4 +44,9 @@ public class UserService {
 	public List<UserVO> searchUserByAuthOrName(Map<String, String> map) {
 		return userDao.selectUserByAuthOrName(map);
 	}
+
+	public boolean unlock(String userNum) {
+		
+		return userDao.updateUserUnlock(userNum);
+	}
 }

@@ -58,4 +58,9 @@ public class UserDAOImpl implements UserDAO {
 	public List<UserVO> selectUserByAuthOrName(Map<String, String> map) {
 		return oracleSqlSession.selectList(namespace + ".selectUserByAuthOrName", map);
 	}
+
+	@Override
+	public boolean updateUserUnlock(String userNum) {
+		return 1 == oracleSqlSession.update(namespace + ".updateUserUnlock", userNum);
+	}
 }

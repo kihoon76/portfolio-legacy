@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jungang.portfolio.domain.AccessLogVO;
@@ -62,5 +63,17 @@ public class AdminController {
 		model.addAttribute("status", status);
 		model.addAttribute("userName", userName);
 		return "mgmt/users";
+	}
+	
+	@GetMapping("mgmt/users/clean/")
+	public String userLockClean(HttpServletRequest request) {
+		String status = request.getParameter("status");
+		String userName = request.getParameter("userName");
+		String userNum = request.getParameter("userNum");
+		
+		userName = (userName == null) ? "" : userName;
+		
+		boolean result = userService.unlock(userNum);
+		return "redirect:/admin/mgmt/users/search?status=" + status + "&userName=" + userName;
 	}
 }

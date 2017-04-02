@@ -89,5 +89,10 @@
       	  group by is_authorized  
 	</select>
 	
-	
+	<update id="updateUserUnlock" parameterType="String">
+		update USERS
+		   set IS_AUTHORIZED = 'Y'
+		 where NUM = #{num}
+	</update>
+ 	
 </mapper>

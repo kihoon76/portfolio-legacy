@@ -51,7 +51,7 @@
 			  				<td>${user.fName}</td>
 			  				<td><c:if test="${user.admin eq true}"><span class="glyphicon glyphicon-ok" style="color:green;"></span></c:if></td>
 			  				<td>${user.email}</td>
-			  				<td><c:if test="${user.authorized eq true}"><span class="glyphicon glyphicon-ok-circle">활성화됨</span></c:if><c:if test="${user.authorized eq false}"><span class="glyphicon glyphicon-ban-circle" style="color:red;">비활성화</span><button type="button" class="btn btn-xs btn-primary" id="btnClear">해제</button></c:if></td>
+			  				<td><c:if test="${user.authorized eq true}"><span class="glyphicon glyphicon-ok-circle">활성화됨</span></c:if><c:if test="${user.authorized eq false}"><span class="glyphicon glyphicon-ban-circle" style="color:red;">비활성화</span><button type="button" class="btn btn-xs btn-primary" id="btnClean" data-user-num="${user.num}">해제</button></c:if></td>
 			  			</tr>
 			  			</c:forEach>
 			  		</table>
