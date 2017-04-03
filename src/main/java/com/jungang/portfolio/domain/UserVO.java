@@ -5,7 +5,7 @@ import java.util.Date;
 import org.apache.ibatis.type.Alias;
 
 @Alias("User")
-public class UserVO {
+public class UserVO extends PageVO{
 	private Integer num;
 	private String id;
 	private String pw;

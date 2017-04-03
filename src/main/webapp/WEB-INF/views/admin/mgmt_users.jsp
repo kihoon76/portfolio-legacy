@@ -57,13 +57,42 @@
 			  		</table>
 			  	</div>
 			  	<div class="form-group" style="padding-left:10px;">
-			  		<ul class="pagination pagination-sm">
-					  <li><a href="#">1</a></li>
-					  <li><a href="#">2</a></li>
-					  <li><a href="#">3</a></li>
-					  <li class="disabled"><a href="#">4</a></li>
-					  <li><a href="#">5</a></li>
-					</ul>
+			  		<ul class="pagination">
+			  			<c:set var="doneLoop" value="false" />
+			  			<c:if test="${page.currentPage gt page.blockPage}">
+			  			<li><a href="/admin/mgmt/users?currentPage=${page.startPage - 1}"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+			  			</c:if>
+			  			<c:forEach var="i" begin="${page.startPage}" end="${page.endPage}" step="1">
+			  				<c:choose>
+			  				<c:when test="${i > page.totalPage}">
+			  					<c:set var="doneLoop" value="true" />
+			  				</c:when>
+			  				<c:when test="${i eq page.currentPage}">
+			  				<li class="active"><a href="#">${i}</a></li>
+			  				</c:when>
+			  				<c:when test="${i ne page.currentPage}">
+			  				<li><a href="/admin/mgmt/users?currentPage=${i}">${i}</a></li>
+			  				</c:when>
+			  				</c:choose>
+			  			</c:forEach>
+			  			<c:if test="${page.totalPage - page.startPage >= page.blockPage}">
+			  			<li><a href="/admin/mgmt/users?currentPage=${page.endPage + 1}"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+			  			</c:if>
+			  		</ul>
+<!-- 			  		<ul class="pagination pagination-sm col-sm-6"> -->
+<!-- 					  <li><a href="#">1</a></li> -->
+<!-- 					  <li><a href="#">2</a></li> -->
+<!-- 					  <li><a href="#">3</a></li> -->
+<!-- 					  <li class="disabled"><a href="#">4</a></li> -->
+<!-- 					  <li><a href="#">5</a></li> -->
+<!-- 					</ul> -->
+<!-- 					<div class="col-sm-6"> -->
+<!-- 					<select class="form-control"> -->
+<!-- 						<option>test1</option> -->
+<!-- 						<option>test1</option> -->
+<!-- 						<option>test1</option> -->
+<!-- 					</select> -->
+<!-- 					</div> -->
 			  	</div>
 				</form>
             </div>

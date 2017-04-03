@@ -11,11 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jungang.portfolio.domain.AccessLogVO;
-import com.jungang.portfolio.domain.UserVO;
+import com.jungang.portfolio.domain.PageVO;
 import com.jungang.portfolio.service.AccessLogService;
 import com.jungang.portfolio.service.UserService;
 
@@ -42,10 +41,19 @@ public class AdminController {
 	}
 	
 	@GetMapping("mgmt/users")
-	public String user(Model model) {
+	public String user(Model model, Integer currentPage) {
+		PageVO page;
+		if(currentPage != null) {
+			page = new PageVO(currentPage);
+		}
+		else {
+			page = new PageVO();
+		}
+		
 		model.addAttribute("map", userService.getUserAuthStatistics());
-		model.addAttribute("users", userService.getUsers());
+		model.addAttribute("users", userService.getUsers(page));
 		model.addAttribute("status", "A");
+		model.addAttribute("page", page);
 		return "mgmt/users";
 	}
 	
@@ -54,9 +62,11 @@ public class AdminController {
 		String status = request.getParameter("status");
 		String userName = request.getParameter("username");
 		
-		Map<String, String> map = new HashMap<String, String>();
+		PageVO page = new PageVO();
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("status", status);
 		map.put("userName", userName);
+		map.put("page",  page);
 		
 		model.addAttribute("map", userService.getUserAuthStatistics());
 		model.addAttribute("users", userService.searchUserByAuthOrName(map));

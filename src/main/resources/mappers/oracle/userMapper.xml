@@ -29,22 +29,50 @@
 		 where ID = #{id}
 	</select>
 	
-	<select id="selectUsers" resultMap="RM_Users">
-		select <include refid="users_all_column" />
+	<select id="selectTotalUsersCnt" parameterType="map" resultType="int">
+		select count(NUM)
+		  from USERS
+		<where>
+		<if test="status != 'A'.toString()">
+		  	and IS_AUTHORIZED = #{status}
+		</if>
+		<if test="userName != null and userName != ''.toString()">
+		  	and S_NAME like '%' || #{userName} || '%'
+		</if>
+		</where>
+	</select>
+	
+	<select id="selectTotalUsersCntNoParams" resultType="int">
+		select count(NUM)
 		  from USERS
 	</select>
 	
+	<select id="selectUsers" parameterType="Page" resultMap="RM_Users">
+		select <include refid="users_all_column" />, RN
+		  from (
+				select <include refid="users_all_column" />,
+					   row_number() over(order by S_NAME) as RN
+				  from USERS
+		  )
+		  where RN between #{startCount} and #{endCount}
+	</select>
+	
 	<select id="selectUserByAuthOrName" parameterType="map" resultMap="RM_Users">
-		select <include refid="users_all_column" />
-		  from USERS
-		  <where>
-		  	<if test="status != 'A'.toString()">
-		  	and IS_AUTHORIZED = #{status}
-		  	</if>
-		  	<if test="userName != null and userName != ''.toString()">
-		  	and S_NAME like '%' || #{userName} || '%'
-		  	</if>
-		  </where>
+		select <include refid="users_all_column" />, RN
+		  from (
+				select <include refid="users_all_column" />,
+					   row_number() over(order by S_NAME) as RN
+				  from USERS
+				  <where>
+				  	<if test="status != 'A'.toString()">
+				  	and IS_AUTHORIZED = #{status}
+				  	</if>
+				  	<if test="userName != null and userName != ''.toString()">
+				  	and S_NAME like '%' || #{userName} || '%'
+				  	</if>
+				  </where>
+		   )
+		 where RN between #{page.startCount} and #{page.endCount}  
 	</select>
 	
 	<resultMap type="User" id="RM_Users">

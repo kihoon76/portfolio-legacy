@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.jungang.portfolio.domain.PageVO;
 import com.jungang.portfolio.domain.UserVO;
 
 @Repository("userDAO")
@@ -50,17 +51,27 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public List<UserVO> selectUsers() {
-		return oracleSqlSession.selectList(namespace + ".selectUsers");
+	public List<UserVO> selectUsers(PageVO pageVO) {
+		return oracleSqlSession.selectList(namespace + ".selectUsers", pageVO);
 	}
 
 	@Override
-	public List<UserVO> selectUserByAuthOrName(Map<String, String> map) {
+	public List<UserVO> selectUserByAuthOrName(Map<String, Object> map) {
 		return oracleSqlSession.selectList(namespace + ".selectUserByAuthOrName", map);
 	}
 
 	@Override
 	public boolean updateUserUnlock(String userNum) {
 		return 1 == oracleSqlSession.update(namespace + ".updateUserUnlock", userNum);
+	}
+
+	@Override
+	public int getTotalUsersCount(Map<String, Object> map) {
+		return oracleSqlSession.selectOne(namespace + ".selectTotalUsersCnt", map);
+	}
+
+	@Override
+	public int getTotalUsersCountNoParams() {
+		return oracleSqlSession.selectOne(namespace + ".selectTotalUsersCntNoParams");
 	}
 }

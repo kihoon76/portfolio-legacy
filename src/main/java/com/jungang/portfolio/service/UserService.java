@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.jungang.portfolio.domain.PageVO;
 import com.jungang.portfolio.domain.UserProjectVO;
 import com.jungang.portfolio.domain.UserVO;
 import com.jungang.portfolio.persistence.UserDAO;
@@ -37,11 +38,15 @@ public class UserService {
 		
 	}
 
-	public List<UserVO> getUsers() {
-		return userDao.selectUsers();
+	public List<UserVO> getUsers(PageVO pageVO) {
+		int totalCnt = userDao.getTotalUsersCountNoParams();
+		pageVO.make(totalCnt);
+		return userDao.selectUsers(pageVO);
 	}
 
-	public List<UserVO> searchUserByAuthOrName(Map<String, String> map) {
+	public List<UserVO> searchUserByAuthOrName(Map<String, Object> map) {
+		int totalCnt = userDao.getTotalUsersCount(map);
+		((PageVO)map.get("page")).make(totalCnt);
 		return userDao.selectUserByAuthOrName(map);
 	}
 
