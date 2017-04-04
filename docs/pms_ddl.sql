@@ -31,7 +31,7 @@ drop sequence TASK_STATUS_SEQ;
  * CREATE SEQUENCE
  */
  create sequence PROJECT_SEQ start with 1;
- create sequence USERS_SEQ start with 4;
+ create sequence USERS_SEQ start with 16;
  create sequence USER_ROLE_SEQ start with 5;
  create sequence TASK_SEQ start with 1;
  create sequence TASK_PRIORITY_SEQ start with 5;

@@ -37,7 +37,7 @@ public class AdminController {
 	
 	@GetMapping("mgmt")
 	public String config() {
-		return "mgmt";
+		return "admin/mgmt";
 	}
 	
 	@GetMapping("mgmt/users")
@@ -54,7 +54,7 @@ public class AdminController {
 		model.addAttribute("users", userService.getUsers(page));
 		model.addAttribute("status", "A");
 		model.addAttribute("page", page);
-		return "mgmt/users";
+		return "admin/mgmt_users";
 	}
 	
 	@GetMapping("mgmt/users/search")
@@ -72,7 +72,7 @@ public class AdminController {
 		model.addAttribute("users", userService.searchUserByAuthOrName(map));
 		model.addAttribute("status", status);
 		model.addAttribute("userName", userName);
-		return "mgmt/users";
+		return "admin/mgmt_users";
 	}
 	
 	@GetMapping("mgmt/users/clean/")

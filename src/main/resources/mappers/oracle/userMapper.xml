@@ -19,7 +19,7 @@
 			NUM, ID, PW, F_NAME, S_NAME,EMAIL,IS_AUTHORIZED, IS_ADMIN, REG_DATE, LAST_LOGIN_DATE, LOGIN_IP, IS_EMAIL_DIRECT
 		)
 		values (
-			#{num}, #{id}, #{pw}, #{fName}, #{sName}, #{email}, #{isAuthorized, typeHandler=yesNoTypeHandler}, #{isAdmin, typeHandler=yesNoTypeHandler}, sysdate, sysdate, #{loginIP}, #{isEmailDirect, typeHandler=yesNoTypeHandler}
+			#{num}, #{id}, #{pw}, #{fName}, #{sName}, #{email}, #{authorized, typeHandler=yesNoTypeHandler}, #{admin, typeHandler=yesNoTypeHandler}, sysdate, sysdate, #{loginIP}, #{emailDirect, typeHandler=yesNoTypeHandler}
 		)
 	</insert>
 	

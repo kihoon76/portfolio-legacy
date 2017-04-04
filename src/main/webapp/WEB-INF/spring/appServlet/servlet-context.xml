@@ -23,27 +23,19 @@
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
-		<beans:property name="order"  value="2" />
-	</beans:bean>
-	
-	<beans:bean id="tilesViewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
-		<beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
-		<beans:property name="order" value="1" />
-	</beans:bean>
-	
-	<beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
-		<beans:property name="definitions">
-			<beans:list>
-				<beans:value>/WEB-INF/tiles/tiles.xml</beans:value>
-			</beans:list>
-		</beans:property>
-		<beans:property name="checkRefresh" value="true" />
+		<beans:property name="order"  value="1" />
 	</beans:bean>
 	
 	<!-- MessageSource -->
+	<!-- http://mryong8.blogspot.kr/2014/11/spring-32-properties-message.html -->
 	<beans:bean id="messageSource"
-				class="org.springframework.context.support.ResourceBundleMessageSource">
-		<beans:property name="basename" value="config/messages" />
+				class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<beans:property name="basenames">
+			<beans:list>
+				<beans:value>classpath:config/messages</beans:value>
+			</beans:list>
+		</beans:property>
+		<beans:property name="defaultEncoding" value="UTF-8" />
 	</beans:bean>
 	
 	<!-- interceptor 등록 -->

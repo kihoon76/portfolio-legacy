@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jungang.portfolio.domain.UserVO;
 import com.jungang.portfolio.service.RegistService;
+import com.jungang.portfolio.utils.HttpHeaderUtil;
 
 @Controller
 @RequestMapping("/regist")
@@ -46,15 +48,16 @@ public class RegistController {
 	}
 	
 	@PostMapping
-	public String submitForm(@ModelAttribute("userForm") @Valid UserVO user, BindingResult errors) throws IOException {
+	public String submitForm(@ModelAttribute("userForm") @Valid UserVO user, BindingResult errors, HttpServletRequest request) throws IOException {
 		
-		String returnVal = "registForm";
+		String returnVal = "regist/registForm";
 		if(!errors.hasErrors()) {
 			user.setAdmin(false);
 			user.setAuthorized(false);
+			user.setLoginIP(HttpHeaderUtil.getClientIP(request));
 			boolean success = registService.regist(user);
 			if(success) {
-				returnVal = "redirect:/login/loginForm";
+				returnVal = "redirect:/signin";
 			}
 		}
 		else {
@@ -72,7 +75,7 @@ public class RegistController {
 	@GetMapping
 	public String initForm(Model model) {
 		model.addAttribute("userForm", new UserVO());
-		return "registForm";
+		return "regist/registForm";
 	}
 	
 	@GetMapping("checkId/{id}")

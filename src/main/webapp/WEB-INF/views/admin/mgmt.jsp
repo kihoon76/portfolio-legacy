@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+<head>
+	<title>관리</title>
+</head>
+<body>
 <div class="container">
 <div class="row">
 <div class="well">
@@ -23,4 +27,4 @@
 </div>
 </div>
 </div>
-</div>
+</body>

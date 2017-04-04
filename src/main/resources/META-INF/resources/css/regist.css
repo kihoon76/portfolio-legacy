@@ -1,7 +1,7 @@
 /*
 * adding asterisk to required fields in bootstrap 3
 */
-.form-group.required .control-label:after {
-  content:"*";
-  color:red;
-}
+.form-group.required .col-form-label:after {content:"*"; color:red;}
+.email-direct, .email-direct-btn {height:34px !important;}
+.form-err {color:red;}
+.in {background: rgba(0, 0, 0, 0.1);}

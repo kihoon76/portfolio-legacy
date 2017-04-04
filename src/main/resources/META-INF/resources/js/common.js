@@ -60,11 +60,26 @@ var common = function(){
 			},
 			isNotNull: function($el) {
 				return !common.model.isNull($el)
+			},
+			makeEmailData: function() {
+				var emailAccount = $('#emailAccount').val();
+				var emailVender = '';
+				
+				if(common.view.isEmailDirect()) {
+					emailVender = $('#txtEmailVender').val();
+				}
+				else {
+					emailVender = $('#selEmailVender').val();
+				}
+				
+				$('#email').val(emailAccount + '@' + emailVender);
+				$('#emailDirect').val(common.view.isEmailDirect());
 			}
 		},
 		view: function(){
 			var emailDirect = false;
 			var loadmask = false;
+			var modal = false;
 			var $loadEl;
 			var loadTxt = 'Please wait...';
 			var loadEffects = {
@@ -133,7 +148,7 @@ var common = function(){
 					 * */
 					
 					//수정폼에 있을때
-					if(m) {
+					if(m == 'modify') {
 						var $dvEmail = $('#dvEmail');
 						if(common.model.isNotNull($dvEmail)) {
 							var dataValue = $dvEmail.data('emailDirect'); 
@@ -247,6 +262,37 @@ var common = function(){
 						$dvMsg.show();
 					}
 					
+				},
+				enableModal: function() {
+					var modalStr = '<div id="myModal" class="modal fade" role="dialog">' +
+					  			   '<div class="modal-dialog">' +
+					  			   '<!-- Modal content-->' +
+					  			   '<div class="modal-content">' +
+					  			   '	<div class="modal-header">' +
+					  			   '	<button type="button" class="close" data-dismiss="modal">&times;</button>' +
+					  			   '	<h4 class="modal-title">알림</h4>' +
+					  			   '</div>' +
+					  			   '<div class="modal-body">' +
+					  			   '<p id="modalMsg"></p>' +
+					  			   '</div>' +
+					  			   '<div class="modal-footer">' +
+					  			   '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>' +
+					  			   '</div>' +
+					  			   '</div>' +
+					  			   '</div>' +
+					  			   '</div>';
+					
+					modal = true;
+					$('body').append(modalStr);
+				},
+				isActiveModal: function() {
+					return modal;
+				},
+				openModal: function(msg) {
+					if(common.view.isActiveModal()) {
+						$('#modalMsg').html(msg);
+						$('#myModal').modal('toggle');
+					}
 				}
 			}
 		}(),

@@ -6,6 +6,11 @@ $(document).ready(function(v,m){
 		HTTP_METHOD = m.Enum.HttpMethod;
 	
 	return function() {
+		v.viewEmailInit();
+		v.enableLoadMask({el:$('form'), msg:'아이디 중복확인 중입니다.'});
+		m.makeEmailData();
+		v.enableModal();
+		
 		$(document).on('click', '#btnCheckDup', function(event) {
 			event.preventDefault();
 			var $id = $('#id');
@@ -15,11 +20,12 @@ $(document).ready(function(v,m){
 				method: HTTP_METHOD.GET,
 				dataType: 'text',
 				success: function(data, textStatus, jqXHR) {
+					
 					if(data == 'valid') {
-						alert('사용 가능한 아이디 입니다 ');
+						v.openModal('사용 가능한 아이디 입니다 ');
 					}
 					else {
-						alert('사용중인 아이디 입니다 ');
+						v.openModal('사용 중인 아이디 입니다.');
 						$id.val('');
 					}
 				},
@@ -27,8 +33,13 @@ $(document).ready(function(v,m){
 					
 				}
 			});
-			
-			
+		});
+		
+		$(document).on('click', '#btnConfirm', function(event) {
+			m.makeEmailData();
+			$('form').submit();
+			v.enableLoadMask({el:$('body'), msg:'등록중입니다.'});
+			v.showMask();
 		});
 	}
 	

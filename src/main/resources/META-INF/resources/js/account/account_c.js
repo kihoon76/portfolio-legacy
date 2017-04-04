@@ -6,21 +6,6 @@ $(document).ready(function(m,v){
 		HTTP_METHOD = m.Enum.HttpMethod,
 		ALERT = m.Enum.Alert;
 	
-	function makeEmailData() {
-		var emailAccount = $('#emailAccount').val();
-		var emailVender = '';
-		
-		if(v.isEmailDirect()) {
-			emailVender = $('#txtEmailVender').val();
-		}
-		else {
-			emailVender = $('#selEmailVender').val();
-		}
-		
-		$('#hdnEmail').val(emailAccount + '@' + emailVender);
-		$('#hdnEmailDirect').val(v.isEmailDirect());
-	}
-	
 	return function() {
 		v.viewEmailModifyInit();
 		v.alertMsgInit();
@@ -29,7 +14,7 @@ $(document).ready(function(m,v){
 		
 		$(document).on('click', '#btnSave', function(event){
 			var $form = $('form');
-			makeEmailData();
+			m.makeEmailData();
 			//console.log($form.serialize());
 			//return;
 			m.ajax({

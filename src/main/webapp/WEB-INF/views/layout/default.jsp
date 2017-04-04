@@ -1,5 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="/resources/bootstrap/3.3.7-1/css/bootstrap.min.css" />
+	<script type="text/javascript" src="/resources/jquery/1.11.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/resources/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/resources/js/common.js"></script>
+	
+	<title><sitemesh:write property="title" /></title>
+	<sitemesh:write property="head" />
+</head>
+<body>
 <nav class="navbar navbar-default" id="topbar">
 	<div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -10,7 +23,6 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <!-- <a class="navbar-brand" href="#">초기화면</a>-->
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -24,25 +36,7 @@
         <li><a href="/admin/mgmt"><span class="glyphicon glyphicon-cog">관리</span></a></li>
        	</sec:authorize>
         <li><a href="#"><span class="glyphicon glyphicon-question-sign">도움말</span></a></li>
-        <!-- <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>-->
       </ul>
-      <!-- <form class="navbar-form navbar-left">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>-->
       <ul class="nav navbar-nav navbar-right">
       	<sec:authorize access="isAuthenticated()">
       	<li><a href="/my/account"><span class="glyphicon glyphicon-user">내계정</span></a></li>
@@ -56,3 +50,6 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+<sitemesh:write property="body" />
+</body>
+</html>

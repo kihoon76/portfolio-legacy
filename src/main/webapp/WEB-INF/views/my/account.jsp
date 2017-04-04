@@ -5,7 +5,16 @@
 <c:set var="emailAccount" value="${fn:split(user.email, '@')[0]}" />
 <c:set var="emailVender" value="${fn:split(user.email, '@')[1]}" />
 <c:set var="isEmailDirect" value="${user.emailDirect}" />
-
+<head>
+	<title>내계정</title>
+	<link rel="stylesheet" href="/resources/plugin/loading/waitMe.css" />
+	<link rel="stylesheet" href="/resources/css/account.css" />
+	
+	<script type="text/javascript" src="/resources/plugin/loading/waitMe.js"></script>
+	<script type="text/javascript" src="/resources/js/account_c.js"></script>
+	<script type="text/javascript" src="/resources/js/account_v.js"></script>
+</head>
+<body>
 <div class="container">
 <div class="row">
 <div class="well">
@@ -54,8 +63,8 @@
 						<button type="button" class="btn btn-primary" id="btnSave">저장</button>
 					</div>
 				</div>
-				<input type="hidden" id="hdnEmail" name="email" />
-				<input type="hidden" id="hdnEmailDirect" name="emailDirect" />
+				<input type="hidden" id="email" name="email" />
+				<input type="hidden" id="emailDirect" name="emailDirect" />
 				</form>
             </div>
             <div class="col-md-5">
@@ -87,4 +96,4 @@
 </div>
 </div>
 </div>
-</div>
+</body>

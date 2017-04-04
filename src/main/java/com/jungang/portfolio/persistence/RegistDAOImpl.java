@@ -18,9 +18,8 @@ public class RegistDAOImpl implements RegistDAO {
 	
 	@Override
 	public int selectUserCountById(String id) {
-		return  oracleSqlSession.selectOne(namespace + ".selectUserCountById", id);
+		return oracleSqlSession.selectOne(namespace + ".selectUserCountById", id);
 	}
-
 
 	@Override
 	public int insertUser(UserVO user) {

@@ -26,7 +26,7 @@ public class MyController {
 		UserVO user = (UserVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		System.err.println(user.getEmail());
 		model.addAttribute("user", user);
-		return "account";
+		return "my/account";
 	}
 	
 	@PostMapping("account/modify")

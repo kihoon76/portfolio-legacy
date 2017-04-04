@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.jungang.portfolio.domain.UserVO;
 import com.jungang.portfolio.exceptions.NotAuthorizedByAdmin;
 import com.jungang.portfolio.service.UserService;
+import com.jungang.portfolio.utils.HttpHeaderUtil;
 
 @Service("userDetailsService")
 public class UserDetailsServiceImpl implements UserDetailsService{
@@ -72,40 +73,9 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	}
 	
 	private UserVO makeUserVO(String username) {
-		/*
-		 * https://www.lesstif.com/pages/viewpage.action?pageId=20775886
-		 * 
-		 * */
-		 String ip = request.getHeader("X-Forwarded-For");
-		 String header = "X-Forwarded-For";
-		 
-		 if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
-		     ip = request.getHeader("Proxy-Client-IP");
-		     header = "Proxy-Client-IP";
-		 } 
-		 if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
-		     ip = request.getHeader("WL-Proxy-Client-IP");
-		     header = "WL-Proxy-Client-IP";
-		 } 
-		 if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
-		     ip = request.getHeader("HTTP_CLIENT_IP"); 
-		     header = "HTTP_CLIENT_IP";
-		 } 
-		 if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
-		     ip = request.getHeader("HTTP_X_FORWARDED_FOR"); 
-		     header = "HTTP_X_FORWARDED_FOR";
-		 } 
-		 if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
-		     ip = request.getRemoteAddr(); 
-		     header = "RemoteAddr";
-		 }
-		 
-		logger.info("####################################################");
-		logger.info("# " + header + " : " + ip);
-		logger.info("####################################################");
 		UserVO user = new UserVO();
 		user.setId(username);
-		user.setLoginIP(ip);
+		user.setLoginIP(HttpHeaderUtil.getClientIP(request));
 		return user;
 	}
 

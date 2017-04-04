@@ -1,4 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+<head>
+	<link rel="stylesheet" href="/resources/plugin/loading/waitMe.css" />
+	<link rel="stylesheet" href="/resources/css/signin.css" />
+	
+	<script type="text/javascript" src="/resources/plugin/loading/waitMe.js"></script>
+	<script type="text/javascript" src="/resources/js/common.js"></script>
+	<script type="text/javascript" src="/resources/js/signin/signin_c.js"></script>
+	<script type="text/javascript" src="/resources/js/signin/signin_v.js"></script>
+	<title>로그인</title>
+</head>
+<body>
 <div class="container">
 <div class="row">
 <div class="col-lg-6 col-lg-offset-3">
@@ -40,3 +51,4 @@
 </div>
 </div>
 </div>
+</body>

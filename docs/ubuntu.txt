@@ -1,0 +1,35 @@
+
+1. Ubuntu 16.04 설치
+
+2. update & upgrade
+	>> sudo apt-get update
+	>> sudo apt-get upgrade
+	>> reboot
+
+3. vmware-tools 설치
+	>> sudo apt-get install open-vm-tools-desktop
+	>> reboot
+
+4. 한글 입력 확인
+
+5. git 설치
+	>> sudo apt-get install git
+
+6. java 설치
+	>> sudo add-apt-repository ppa:webupd8team/java
+	>> sudo apt-get update
+	>> sudo apt-get install oracle-java8-installer
+	>> sudo vi /etc/bash.bashrc
+		>> JAVA_HOME=
+		>> PATH=$JAVA_HOME/bin:$PATH
+
+7. /etc/hosts 설정
+	>> ec2
+	>> rds
+
+7. STS 3.8.3 설치
+	>> tar xzvf spring-tool-suite-3.8.3.RELEASE-e4.6.2-linux-gtk-x86_64.tar.gz
+
+8. Tern & WTP Resource & Toad Plugin 설치
+	>> Eclipse Marketplace ==> Tern, Toad
+	>> Install New Software ==> WTP Resource ==> http://oss.opensagres.fr/eclipse-wtp-webresources/1.1.0/
