@@ -12,7 +12,6 @@
 <body>
 <div class="container">
 <div class="row">
-<div class="col-lg-6 col-lg-offset-3">
 <div class="well">
 <div class="panel panel-primary">
 	<div class="panel-heading">로그인</div>
@@ -46,7 +45,6 @@
 			</div>
 		</form>
 	</div>
-</div>
 </div>
 </div>
 </div>

@@ -22,6 +22,7 @@
 <head>
 	<link rel="stylesheet" href="/resources/plugin/loading/waitMe.css" />
 	<link rel="stylesheet" href="/resources/css/regist.css" />
+	<link rel="stylesheet" href="/resources/css/validate.css" />
 	
 	<script type="text/javascript" src="/resources/plugin/loading/waitMe.js"></script>
 	<script type="text/javascript" src="/resources/js/regist/regist_c.js"></script>
@@ -32,7 +33,6 @@
 <body>
 <div class="container">
 <div class="row">
-<div class="col-lg-6 col-lg-offset-3">
 <div class="well">
 <div class="panel panel-primary">
 	<div class="panel-heading">등록</div>
@@ -111,7 +111,6 @@
 	    </div>
 	</form:form>
 	</div>
-</div>
 </div>
 </div>
 </div>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.oracle.projectMapper">
+	<resultMap id="RM_project" type="Project">
+		<id property="num"					column="NUM" />
+		<result property="name"				column="NAME" />
+		<result property="thePublic"		column="IS_THE_PUBLIC"		typeHandler="yesNoTypeHandler"/>
+		<result property="myProject"		column="IS_MY_PROJECT"		typeHandler="yesNoTypeHandler"/>
+	</resultMap>
+	
+	<select id="selectProjectNames" parameterType="int" resultMap="RM_project">
+		select NUM, NAME, IS_THE_PUBLIC, decode(t2.PROJECT_NUM, null, 'N', 'Y') as IS_MY_PROJECT   
+  		  from PROJECT t1
+  		  left outer join (
+	   			select PROJECT_NUM 
+	     		  from PROJECT_USER
+	    		 where USER_NUM = #{userNum}
+  		) t2 on t1.NUM = t2.PROJECT_NUM	
+	</select>
+</mapper>

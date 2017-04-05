@@ -1,0 +1,13 @@
+.project-topbar {margin-bottom:10px;}
+.right-menu {border-right:solid 1px #A9A9A9;  height:500px;}
+.bottom-line {border-bottom:solid 1px #A9A9A9;}
+
+.table {
+    border-bottom:0px !important;
+}
+.table th, .table td {
+    border: 1px !important;
+}
+.fixed-table-container {
+    border:0px !important;
+}

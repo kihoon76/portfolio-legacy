@@ -45,7 +45,7 @@ drop sequence TASK_STATUS_SEQ;
  *	 NAME 			(프로젝트명)
  *	 ALIAS			(프로젝트 식별자명)
  *	 DESCRIPTION	(프로젝트 상세설명)
- *	 IS_PUBLIC		(공개여부)
+ *	 IS_THE_PUBLIC	(공개여부)
  *	 START_DATE		(시작일)
  *	 END_DATE		(종료일)
  */
@@ -54,11 +54,11 @@ create table PROJECT (
 	NAME			varchar2(50 char)	not null,
 	ALIAS			varchar2(50 char)	not null,
 	DESCRIPTION		varchar2(500 char),
-	IS_PUBLIC		char(1)				default 'Y' not null,
+	IS_THE_PUBLIC	char(1)				default 'Y' not null,
 	START_DATE		date				not null,
 	END_DATE		date				not null,
 	constraint PK_PROJECT__NUM primary key (NUM),
-	constraint CHK_PROJECT__PUBLIC check (IS_PUBLIC IN ('Y','N')),
+	constraint CHK_PROJECT__PUBLIC check (IS_THE_PUBLIC IN ('Y','N')),
 	constraint UQ_PROJECT__ALIAS unique (ALIAS),
 	constraint UQ_PROJECT__NAME unique (NAME)
 );
