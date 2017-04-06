@@ -27,11 +27,11 @@ public class UserValidator implements Validator{
 		UserVO user = (UserVO)target;
 		
 		if(StringUtils.isBlank(user.getId())) {
-			errors.rejectValue("id", "not_empty.id");
+			errors.rejectValue("id", "NotNull.user.id");
 		}
 		else {
 			if(registService.isDuplicatedId(user.getId())) {
-				errors.rejectValue("id", "dup.id");
+				errors.rejectValue("id", "Dup.user.id");
 			}
 			else {
 				
@@ -39,16 +39,16 @@ public class UserValidator implements Validator{
 		}
 		
 		if(StringUtils.isBlank(user.getEmail())) {
-			errors.rejectValue("email", "not_empty.email");
+			errors.rejectValue("email", "NotNull.user.email");
 		}
 		else {
 			if(!ValidateUtil.isValidEmail(user.getEmail())) {
-				errors.rejectValue("email", "incorrect_fotmat.email");
+				errors.rejectValue("email", "NotFormat.user.email");
 			}
 		}
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pw", "not_empty.pw");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "sName", "not_empty.sName");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "fName", "not_empty.fName");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pw", "NotNull.user.pw");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "sName", "NotNull.user.sName");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "fName", "NotNull.user.fName");
 		
 		
 		

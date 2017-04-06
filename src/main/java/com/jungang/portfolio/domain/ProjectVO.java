@@ -30,7 +30,7 @@ public class ProjectVO {
 		this.num = num;
 	}
 	
-	@NotNull
+	@NotNull(message="{NotNull.project.name}")
 	@Size(max=50)
 	public String getName() {
 		return name;

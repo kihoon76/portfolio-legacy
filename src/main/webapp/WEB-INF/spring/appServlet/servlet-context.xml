@@ -26,29 +26,6 @@
 		<beans:property name="order"  value="1" />
 	</beans:bean>
 	
-	<!-- MessageSource -->
-	<!-- http://mryong8.blogspot.kr/2014/11/spring-32-properties-message.html -->
-	<beans:bean id="messageSource"
-				class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-		<beans:property name="basenames">
-			<beans:list>
-				<beans:value>classpath:config/messages</beans:value>
-			</beans:list>
-		</beans:property>
-		<beans:property name="defaultEncoding" value="UTF-8" />
-	</beans:bean>
-	
-	<!-- interceptor 등록 -->
-<!-- 	<interceptors> -->
-<!-- 		<interceptor> -->
-<!-- 			<mapping path="/*"/> -->
-<!-- 			<beans:bean class="com.jungang.portfolio.interceptor.AccessLogInterceptor" /> -->
-<!-- 		</interceptor> -->
-<!-- 		<interceptor> -->
-<!-- 			<mapping path="/*"/> -->
-<!-- 			<beans:bean class="com.jungang.portfolio.interceptor.LoginInterceptor" /> -->
-<!-- 		</interceptor> -->
-<!-- 	</interceptors> -->
 	
 	<context:component-scan base-package="com.jungang.portfolio" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>

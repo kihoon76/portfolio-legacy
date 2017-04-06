@@ -44,13 +44,11 @@
 	   	<div class="form-group row required">
 	    	<label for="startDate" class="col-md-2 col-form-label">시작일</label>
 	    	<div class="col-md-4">
-<!-- 	        	<input type="text" id="startDate"> -->
 				<form:input path="startDate" cssClass="form-control" />
 				<form:errors path="startDate" />
 	      	</div>
 	      	<label for="endDate" class="col-md-2 col-form-label">종료일</label>
 	    	<div class="col-md-4">
-<!-- 	        	<input type="text" id="startDate"> -->
 				<form:input path="endDate" cssClass="form-control" />
 				<form:errors path="endDate" />
 	      	</div>
