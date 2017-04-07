@@ -8,4 +8,6 @@ public interface ProjectDAO {
 
 	List<ProjectVO> selectProjectNames(int userNum);
 
+	int insertProject(ProjectVO project);
+
 }

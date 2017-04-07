@@ -32,14 +32,26 @@
 	<!-- Sitemesh -->
 	<!-- http://javadox.com/org.sitemesh/sitemesh/3.0.0/org/sitemesh/config/ConfigurableSiteMeshFilter.html -->
 	<!-- http://hellowk1.blogspot.kr/2013/06/spring-mvc-sitemesh-3-1.html -->
+	<!-- http://stackoverflow.com/questions/15441352/how-to-use-custom-properties-with-sitemesh-3 -->
 	<filter>
 		<filter-name>sitemesh</filter-name>
-		<filter-class>org.sitemesh.config.ConfigurableSiteMeshFilter</filter-class>
+<!-- 		<filter-class>org.sitemesh.config.ConfigurableSiteMeshFilter</filter-class> -->
+		<filter-class>com.jungang.portfolio.sitemesh.MySiteMeshFilter</filter-class>
 		<init-param>
 			<param-name>configFile</param-name>
 			<param-value>/WEB-INF/sitemesh/sitemesh3.xml</param-value>
 		</init-param>
 	</filter>
+	
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	
 	
 	<filter-mapping>
 		<filter-name>springSecurityFilterChain</filter-name>
@@ -48,6 +60,11 @@
 	
 	<filter-mapping>
 		<filter-name>sitemesh</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 

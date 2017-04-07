@@ -23,4 +23,10 @@ public class ProjectDAOImpl implements ProjectDAO {
 		return oracleSqlSession.selectList(namespace + ".selectProjectNames", userNum);
 	}
 
+
+	@Override
+	public int insertProject(ProjectVO project) {
+		return oracleSqlSession.insert(namespace + ".insertProject", project);
+	}
+
 }

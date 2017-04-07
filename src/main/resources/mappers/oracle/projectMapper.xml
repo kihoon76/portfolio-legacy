@@ -17,4 +17,16 @@
 	    		 where USER_NUM = #{userNum}
   		) t2 on t1.NUM = t2.PROJECT_NUM	
 	</select>
+	
+	<insert id="insertProject" parameterType="Project">
+		<selectKey keyColumn="NUM" keyProperty="num" resultType="int" order="BEFORE">
+		select PROJECT_SEQ.nextval from dual
+		</selectKey>
+		insert into PROJECT(
+			NUM, NAME, ALIAS, DESCRIPTION,IS_THE_PUBLIC, START_DATE, END_DATE
+		)
+		values (
+			#{num}, #{name}, #{alias}, #{description}, #{thePublic, typeHandler=yesNoTypeHandler}, #{startDate}, #{endDate}
+		)
+	</insert>
 </mapper>

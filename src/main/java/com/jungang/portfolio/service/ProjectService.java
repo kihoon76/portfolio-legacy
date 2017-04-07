@@ -17,4 +17,8 @@ public class ProjectService {
 	public List<ProjectVO> getProjectsNameList(int userNum) {
 		return projectDao.selectProjectNames(userNum);
 	}
+
+	public boolean createProject(ProjectVO project) {
+		return 1 == projectDao.insertProject(project);
+	}
 }
