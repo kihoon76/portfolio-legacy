@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jungang.portfolio.domain.ProjectVO;
 import com.jungang.portfolio.domain.TaskVO;
@@ -67,8 +68,11 @@ public class ProjectController {
 	}
 	
 	@GetMapping("/details/{details}")
-	public String details(@PathVariable String details, Model model) {
+	public String details(@PathVariable String details, Model model, @RequestParam("pnum") String pnum, @RequestParam("pname") String pname) {
+		System.err.println("pnum ==> " + pnum + ", pname ==> " + pname);
 		model.addAttribute("details", details);
+		model.addAttribute("pnum", pnum);
+		model.addAttribute("pname", pname);
 		return "project/details/" + details;
 	}
 	
@@ -78,6 +82,8 @@ public class ProjectController {
 		List<Map<String, String>> taskTypes = projectService.getTaskTypes();
 		List<Map<String, String>> taskStatuses = projectService.getTaskStatuses();
 		List<Map<String, String>> taskPriorities = projectService.getTaskPriorities();
+		//int task.getProjectNum()
+		//projectService.getResponsibilityFromProjectMember()
 		
 		model.addAttribute("details", "task");
 		model.addAttribute("taskTypes", taskTypes);

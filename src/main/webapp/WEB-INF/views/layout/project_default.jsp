@@ -53,7 +53,7 @@
     </div><!-- /.navbar-collapse -->
 </div><!-- /.container-fluid -->
 <div class="alert alert-info">
-  프로젝트 명
+  <c:out value="${pname}" />
 </div>
 <div class="panel with-nav-tabs panel-primary">
 	<div class="panel-heading">
@@ -74,6 +74,8 @@
     	<div class="tab-pane fade in active"  id="${details}"><sitemesh:write property="page.item" /></div>
     </div>
 	</div>
+	<input hidden id="hdnPnum"  value="${pnum}" />
+	<input hidden id="hdnPname" value="${pname}" />
 </div>
 </nav>
 <sitemesh:write property="body" />

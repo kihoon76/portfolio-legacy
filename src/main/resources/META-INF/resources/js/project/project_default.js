@@ -8,7 +8,9 @@ $(document).ready(function(v,m){
 		$(document).on('click', '.nav-tabs a', function(event) {
 			
 			var detail = $(this).data('projectDetails');
-			window.location.href = url + detail;
+			var pnum = $('#hdnPnum').val();
+			var pname = $('#hdnPname').val();
+			window.location.href = url + detail + '?pnum=' + pnum + '&pname=' + pname;
 		});
 	}
 }(

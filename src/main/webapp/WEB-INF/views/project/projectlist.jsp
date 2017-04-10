@@ -28,8 +28,8 @@
 					<c:forEach var="project" items="${list}">
 					<tr>
 						<td>
-						<c:if test="${project.myProject}"><a href="/project/details/outline"><span class="glyphicon glyphicon-question-sign">${project.name}</span></c:if></a>
-						<c:if test="${!project.myProject}"><a href="/project/details/outline">${project.name}</a></c:if>
+						<c:if test="${project.myProject}"><a href="/project/details/outline?pnum=${project.num}&pname=${project.name}"><span class="glyphicon glyphicon-question-sign">${project.name}</span></c:if></a>
+						<c:if test="${!project.myProject}"><a href="/project/details/outline?pnum=${project.num}&pname=${project.name}">${project.name}</a></c:if>
 						</td>
 					</tr>
 					</c:forEach>
