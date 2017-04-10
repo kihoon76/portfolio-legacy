@@ -34,7 +34,7 @@
     	<!--<li class="active"><a href="#">내페이지</a></li>-->
 		<li><a href="/main"><span class="glyphicon glyphicon-th-list">초기화면</span></a></li>
         <li><a href="#"><span class="glyphicon glyphicon-home">내페이지</span></a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-list-alt">프로젝트</span></a></li>
+        <li><a href="/project"><span class="glyphicon glyphicon-list-alt">프로젝트</span></a></li>
         <sec:authorize access="hasRole('ROLE_ADMIN')">
         <li><a href="/admin/mgmt"><span class="glyphicon glyphicon-cog">관리</span></a></li>
        	</sec:authorize>
@@ -70,7 +70,7 @@
 	</div>
 	
 	<div class="panel-body">
-    <div class="tab-content" style="height:500px;">
+    <div class="tab-content" style="height:1100px;">
     	<div class="tab-pane fade in active"  id="${details}"><sitemesh:write property="page.item" /></div>
     </div>
 	</div>

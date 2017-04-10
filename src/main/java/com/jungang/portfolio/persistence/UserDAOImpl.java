@@ -74,4 +74,9 @@ public class UserDAOImpl implements UserDAO {
 	public int getTotalUsersCountNoParams() {
 		return oracleSqlSession.selectOne(namespace + ".selectTotalUsersCntNoParams");
 	}
+
+	@Override
+	public List<Map<String, String>> selectUsersForProjectMember() {
+		return oracleSqlSession.selectList(namespace + ".selectUsersForProjectMember");
+	}
 }

@@ -29,4 +29,36 @@
 			#{num}, #{name}, #{alias}, #{description}, #{thePublic, typeHandler=yesNoTypeHandler}, #{startDate}, #{endDate}
 		)
 	</insert>
+	
+	<insert id="insertProjectUser" parameterType="map">
+		insert ALL 
+		<foreach collection="list" item="projectUser" separator="">
+		into PROJECT_USER (
+			PROJECT_NUM, USER_NUM, USER_ROLE_NUM
+		)
+		values 
+		(
+			#{projectUser.projectNum}, #{projectUser.userNum}, 1
+		)
+		</foreach>
+		select * from dual
+	</insert>
+	
+	<select id="selectTaskTypes" resultType="map">
+		select NUM, NAME
+		  from TASK_TYPE
+		  order by NUM
+	</select>
+	
+	<select id="selectTaskStatuses" resultType="map">
+		select NUM,NAME
+		  from TASK_STATUS
+		  order by SOONSEO
+	</select>
+	
+	<select id="selectTaskPriorities" resultType="map">
+		select NUM,NAME
+		  from TASK_PRIORITY
+		  order by SOONSEO
+	</select>
 </mapper>

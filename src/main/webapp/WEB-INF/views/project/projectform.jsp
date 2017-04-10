@@ -8,6 +8,7 @@
 <title>프로젝트</title>
 <link rel="stylesheet" href="/resources/css/validate.css" />
 <link rel="stylesheet" href="/resources/css/check_switch.css" />
+<link rel="stylesheet" href="/resources/css/project/projectform.css" />
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
 <script type="text/javascript" src="/resources/plugin/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="/resources/js/project/project_c.js"></script>
@@ -18,7 +19,7 @@
 <div class="row">
 <div class="well">
 <div class="panel panel-primary">
-	<div class="panel-heading">새프로젝트</div>
+	<div class="panel-heading">새 프로젝트</div>
 	<div class="panel-body">
 	<form:form cssClass="form-horizontal" modelAttribute="projectForm" method="POST">
 		<div class="form-group row required">
@@ -51,6 +52,18 @@
 	    	<div class="col-md-4">
 				<form:input path="endDate" cssClass="form-control" />
 				<form:errors path="endDate" />
+	      	</div>
+	    </div>
+	   	<div class="form-group row required">
+	    	<label class="col-md-2 col-form-label">프로젝트 구성원</label>
+	    	<div class="col-md-10">
+	    	<c:forEach var="member" items="${members}" varStatus="status">
+	    	<label for="memberNum${status.index + 1}" class="btn btn-default">${member.F_NAME} ${member.S_NAME}(${member.ID}) 
+	    	<input type="checkbox" id="memberNum${status.index + 1}" name="memberNum"  value="${member.NUM}" class="badgebox"/>
+	    	<span class="badge">&check;</span>
+	    	</label>
+	    	</c:forEach>
+	    	<form:errors path="memberNum" cssClass="form-err"/>
 	      	</div>
 	    </div>
 	   	<div class="form-group row">

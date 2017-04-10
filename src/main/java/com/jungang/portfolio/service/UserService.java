@@ -54,4 +54,8 @@ public class UserService {
 		
 		return userDao.updateUserUnlock(userNum);
 	}
+	
+	public List<Map<String, String>> getUsersForProjectMember() {
+		return userDao.selectUsersForProjectMember();
+	}
 }

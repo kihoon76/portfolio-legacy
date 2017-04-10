@@ -39,8 +39,7 @@
 			
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-default" id="btnSubmit">전송</button>
-					<button type="button" class="btn btn-default" id="btnAjaxSubmit">Ajax전송</button>
+					<button type="button" class="btn btn-default" id="btnAjaxSubmit">로그인</button>
 				</div>
 			</div>
 		</form>

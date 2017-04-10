@@ -1,6 +1,7 @@
 package com.jungang.portfolio.web;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -16,8 +17,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jungang.portfolio.domain.ProjectVO;
+import com.jungang.portfolio.domain.TaskVO;
 import com.jungang.portfolio.domain.UserVO;
 import com.jungang.portfolio.service.ProjectService;
+import com.jungang.portfolio.service.UserService;
 
 @Controller
 @RequestMapping("/project")
@@ -26,32 +29,40 @@ public class ProjectController {
 	@Autowired
 	ProjectService projectService;
 	
+	@Autowired
+	UserService userService;
+	
 	@GetMapping
 	public String viewProjects(Model model) {
-		//UserVO user = (UserVO)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		List<ProjectVO> list = projectService.getProjectsNameList(1);
+		UserVO user = (UserVO)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		List<ProjectVO> list = projectService.getProjectsNameList(user.getNum());
 		
 		model.addAttribute("list", list);
 		return "project/projectlist";
 	}
 	
 	@PostMapping("new")
-	public String createProject(@Valid @ModelAttribute("projectForm") ProjectVO project, BindingResult errors) {
+	public String createProject(@Valid @ModelAttribute("projectForm") ProjectVO project, BindingResult errors, Model model) {
 		System.err.println(project);
 		String result = "project/projectform";
 		
 		if(!errors.hasErrors()) {
-			if(projectService.createProject(project)) {
-				result = "redirect:/project";
+			try {
+				if(projectService.createProject(project)) {
+					result = "redirect:/project";
+				}
 			}
+			catch(Exception e) {}
 		}
 		
+		model.addAttribute("members", userService.getUsersForProjectMember());
 		return result;
 	}
 	
 	@GetMapping("new")
-	public String initProject(@ModelAttribute("projectForm") ProjectVO projectForm) {
+	public String initProject(@ModelAttribute("projectForm") ProjectVO projectForm, Model model) {
 		
+		model.addAttribute("members", userService.getUsersForProjectMember());
 		return "project/projectform";
 	}
 	
@@ -62,8 +73,16 @@ public class ProjectController {
 	}
 	
 	@GetMapping("/details/task/new")
-	public String viewTaskForm(Model model) {
+	public String viewTaskForm(Model model, @ModelAttribute("taskForm") TaskVO task) {
+		
+		List<Map<String, String>> taskTypes = projectService.getTaskTypes();
+		List<Map<String, String>> taskStatuses = projectService.getTaskStatuses();
+		List<Map<String, String>> taskPriorities = projectService.getTaskPriorities();
+		
 		model.addAttribute("details", "task");
+		model.addAttribute("taskTypes", taskTypes);
+		model.addAttribute("taskStatuses", taskStatuses);
+		model.addAttribute("taskPriorities", taskPriorities);
 		
 		return "project/details/task_new";
 	}

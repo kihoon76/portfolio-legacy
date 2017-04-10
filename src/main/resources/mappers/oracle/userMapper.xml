@@ -123,4 +123,9 @@
 		 where NUM = #{num}
 	</update>
  	
+ 	<select id="selectUsersForProjectMember" resultType="map">
+ 		select NUM, ID, S_NAME, F_NAME
+ 		  from USERS
+ 		 where IS_AUTHORIZED = 'Y'
+ 	</select>
 </mapper>

@@ -1,6 +1,7 @@
 package com.jungang.portfolio.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -27,6 +28,30 @@ public class ProjectDAOImpl implements ProjectDAO {
 	@Override
 	public int insertProject(ProjectVO project) {
 		return oracleSqlSession.insert(namespace + ".insertProject", project);
+	}
+
+
+	@Override
+	public List<Map<String, String>> selectTaskTypes() {
+		return oracleSqlSession.selectList(namespace + ".selectTaskTypes");
+	}
+
+
+	@Override
+	public List<Map<String, String>> selectTaskStatuses() {
+		return oracleSqlSession.selectList(namespace + ".selectTaskStatuses");
+	}
+
+
+	@Override
+	public List<Map<String, String>> selectTaskPriorities() {
+		return oracleSqlSession.selectList(namespace + ".selectTaskPriorities");
+	}
+
+
+	@Override
+	public int insertProjectUser(List<Map<String, Object>> list) {
+		return oracleSqlSession.insert(namespace + ".insertProjectUser", list);
 	}
 
 }

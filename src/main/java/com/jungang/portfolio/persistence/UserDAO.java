@@ -17,4 +17,5 @@ public interface UserDAO {
 	boolean updateUserUnlock(String userNum);
 	int getTotalUsersCount(Map<String, Object> map);
 	int getTotalUsersCountNoParams();
+	List<Map<String, String>> selectUsersForProjectMember();
 }

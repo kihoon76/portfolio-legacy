@@ -23,6 +23,8 @@ public class ProjectVO {
 	private boolean thePublic;
 	private boolean myProject;
 	
+	private String[] memberNum;
+	
 	public int getNum() {
 		return num;
 	}
@@ -108,5 +110,14 @@ public class ProjectVO {
 		}
 		
 		return s;
+	}
+	
+	@NotNull(message="프로젝트 멤버를 선택하세요")
+	public String[] getMemberNum() {
+		return memberNum;
+	}
+	public void setMemberNum(String[] memberNum) {
+		
+		this.memberNum = memberNum;
 	}
 }
