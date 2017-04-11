@@ -54,4 +54,10 @@ public class ProjectDAOImpl implements ProjectDAO {
 		return oracleSqlSession.insert(namespace + ".insertProjectUser", list);
 	}
 
+
+	@Override
+	public List<Map<String, String>> selectProjectUsers(Integer pNum) {
+		return oracleSqlSession.selectList(namespace + ".selectProjectUsers", pNum);
+	}
+
 }

@@ -63,4 +63,8 @@ public class ProjectService {
 	public List<Map<String, String>> getTaskPriorities() {
 		return projectDao.selectTaskPriorities();
 	}
+
+	public List<Map<String, String>> getProjectUsers(Integer pNum) {
+		return projectDao.selectProjectUsers(pNum);
+	}
 }

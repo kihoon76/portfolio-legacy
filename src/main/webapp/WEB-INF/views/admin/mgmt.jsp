@@ -15,7 +15,7 @@
         		<td><a href="/admin/mgmt/projects"><span class="glyphicon glyphicon-list-alt">프로젝트</span></a></td>
         	</tr>
         	<tr>
-        		<td><a href="/admin/mgmt/users"><span class="glyphicon glyphicon-user">사용자</span></a></td>
+        		<td><a href="/admin/mgmt/users/search"><span class="glyphicon glyphicon-user">사용자</span></a></td>
         	</tr>
         	<tr>
         		<td><a href="/admin/mgmt/task/type"><span class="glyphicon glyphicon-tasks">일감유형</span></a></td>

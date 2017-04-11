@@ -61,4 +61,12 @@
 		  from TASK_PRIORITY
 		  order by SOONSEO
 	</select>
+	
+	<select id="selectProjectUsers" parameterType="int" resultType="map">
+		select NUM, ID, F_NAME, S_NAME
+  		  from PROJECT_USER t1 
+  		  inner join USERS t2
+    		 on t1.PROJECT_NUM = #{projectNum}
+   			and t1.USER_NUM = t2.NUM 
+	</select>
 </mapper>

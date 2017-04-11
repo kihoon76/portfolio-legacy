@@ -41,9 +41,13 @@ public class AdminController {
 		return "admin/mgmt";
 	}
 	
-	@GetMapping("mgmt/users")
-	public String user(Model model, Integer currentPage) {
+	@GetMapping("mgmt/users/search")
+	public String search(Model model,
+					     @RequestParam(name = "status", defaultValue="A", required = false) String status,
+					     @RequestParam(name = "username", required = false) String userName,
+					     @RequestParam(name = "currentPage", required = false) Integer currentPage) {
 		PageVO page;
+		
 		if(currentPage != null) {
 			page = new PageVO(currentPage);
 		}
@@ -51,19 +55,6 @@ public class AdminController {
 			page = new PageVO();
 		}
 		
-		model.addAttribute("map", userService.getUserAuthStatistics());
-		model.addAttribute("users", userService.getUsers(page));
-		model.addAttribute("status", "A");
-		model.addAttribute("page", page);
-		return "admin/mgmt_users";
-	}
-	
-	@GetMapping("mgmt/users/search")
-	public String search(Model model,
-					     @RequestParam("status") String status,
-					     @RequestParam("username") String userName) {
-				
-		PageVO page = new PageVO();
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("status", status);
 		map.put("userName", userName);
@@ -73,6 +64,7 @@ public class AdminController {
 		model.addAttribute("users", userService.searchUserByAuthOrName(map));
 		model.addAttribute("status", status);
 		model.addAttribute("userName", userName);
+		model.addAttribute("page", page);
 		return "admin/mgmt_users";
 	}
 	

@@ -19,4 +19,6 @@ public interface ProjectDAO {
 	
 	int insertProjectUser(List<Map<String, Object>> list);
 
+	List<Map<String, String>> selectProjectUsers(Integer pNum);
+
 }

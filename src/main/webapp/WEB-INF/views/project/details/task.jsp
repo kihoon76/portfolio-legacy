@@ -10,7 +10,7 @@
 			<div class="col-md-9">
 				<div>
 		       	   <span class="pull-right" style="padding-bottom:5px;">
-		               <a href="/project/details/task/new" class="btn btn-sm btn-primary">
+		               <a href="/project/details/task/new?pnum=${pnum}&pname=${pname}" class="btn btn-sm btn-primary">
 		               <span class="glyphicon glyphicon-plus"></span>새일감 생성</a>
 		           </span>
 		        </div>   

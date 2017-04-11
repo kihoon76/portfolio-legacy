@@ -63,7 +63,11 @@
 			    <div class="form-group row required">
 			    	<label for="responsibilityNum" class="col-md-2 col-form-label">담당자</label>
 			    	<div class="col-md-4">
-						<form:input path="responsibilityNum" cssClass="form-control" />
+			    		<form:select path="responsibilityNum" cssClass="form-control">
+						<c:forEach var="taskResponsibility" items="${taskResponsibilities}">
+							<option value="${taskResponsibility.NUM}">${taskResponsibility.F_NAME}${taskResponsibility.S_NAME}(${taskResponsibility.ID})</option>
+						</c:forEach> 
+						</form:select>
 			      	</div>
 			      	<label for="progress" class="col-md-2 col-form-label">진척도</label>
 			    	<div class="col-md-4">

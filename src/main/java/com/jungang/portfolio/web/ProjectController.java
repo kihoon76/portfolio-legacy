@@ -77,18 +77,21 @@ public class ProjectController {
 	}
 	
 	@GetMapping("/details/task/new")
-	public String viewTaskForm(Model model, @ModelAttribute("taskForm") TaskVO task) {
-		
+	public String viewTaskForm(Model model, @ModelAttribute("taskForm") TaskVO task,
+							   @RequestParam("pnum") Integer pnum,
+							   @RequestParam("pname") String pname) {
 		List<Map<String, String>> taskTypes = projectService.getTaskTypes();
 		List<Map<String, String>> taskStatuses = projectService.getTaskStatuses();
 		List<Map<String, String>> taskPriorities = projectService.getTaskPriorities();
-		//int task.getProjectNum()
-		//projectService.getResponsibilityFromProjectMember()
+		List<Map<String, String>> taskResponsibility = projectService.getProjectUsers(pnum);
 		
 		model.addAttribute("details", "task");
+		model.addAttribute("pnum", pnum);
+		model.addAttribute("pname", pname);
 		model.addAttribute("taskTypes", taskTypes);
 		model.addAttribute("taskStatuses", taskStatuses);
 		model.addAttribute("taskPriorities", taskPriorities);
+		model.addAttribute("taskResponsibilities", taskResponsibility);
 		
 		return "project/details/task_new";
 	}
