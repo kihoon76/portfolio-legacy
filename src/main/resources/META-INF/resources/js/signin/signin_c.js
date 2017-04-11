@@ -13,6 +13,13 @@ $(document).ready(function(v,m){
 		//loadmask 활성화
 		v.enableLoadMask({el:$('body'), msg:'로그인 중입니다'});
 		
+		//Cookie 가져오기
+		var id = $.cookie('id');
+		if(id != null) {
+			$('#id').val(id);
+			$('#idSave').prop('checked', true);
+		}
+		
 		$(document).on('click', '#btnAjaxSubmit', function(event) {
 			event.preventDefault();
 			var $form = $('form input');
@@ -57,6 +64,12 @@ $(document).ready(function(v,m){
 					
 				}
 			});
+		});
+		
+		$(document).on('keypress', '#pw', function(event) {
+			if(event.which == 13) {
+				$('#btnAjaxSubmit').trigger('click');
+			}
 		});
 	}
 }(

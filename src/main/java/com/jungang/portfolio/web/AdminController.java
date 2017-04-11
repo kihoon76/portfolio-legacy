@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jungang.portfolio.domain.AccessLogVO;
 import com.jungang.portfolio.domain.PageVO;
@@ -58,10 +59,10 @@ public class AdminController {
 	}
 	
 	@GetMapping("mgmt/users/search")
-	public String search(HttpServletRequest request, Model model) {
-		String status = request.getParameter("status");
-		String userName = request.getParameter("username");
-		
+	public String search(Model model,
+					     @RequestParam("status") String status,
+					     @RequestParam("username") String userName) {
+				
 		PageVO page = new PageVO();
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("status", status);

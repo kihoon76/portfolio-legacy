@@ -46,7 +46,9 @@ public class UserService {
 
 	public List<UserVO> searchUserByAuthOrName(Map<String, Object> map) {
 		int totalCnt = userDao.getTotalUsersCount(map);
+		System.err.println("totalCnt ==> " + totalCnt);
 		((PageVO)map.get("page")).make(totalCnt);
+		System.err.println((PageVO)map.get("page"));
 		return userDao.selectUserByAuthOrName(map);
 	}
 

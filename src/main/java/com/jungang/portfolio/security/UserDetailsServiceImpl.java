@@ -36,7 +36,6 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		UserVO user = null;
 		try {
 			user = userService.getUserAfterLogin(makeUserVO(username));
-			System.err.println(request);
 		}
 		catch(Exception e) {
 			throw new UsernameNotFoundException("접속자 정보 DB에서  문제가 발생했습니다. ");

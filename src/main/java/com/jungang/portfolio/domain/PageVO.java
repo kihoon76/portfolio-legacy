@@ -1,6 +1,9 @@
 package com.jungang.portfolio.domain;
 
+import java.io.IOException;
+
 import org.apache.ibatis.type.Alias;
+import org.codehaus.jackson.map.ObjectMapper;
 
 @Alias("Page")
 public class PageVO {
@@ -27,6 +30,18 @@ public class PageVO {
 	}
 	
 	public PageVO() {}
+	
+	@Override
+	public String toString() {
+		String s = "";
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			s = mapper.writeValueAsString(this);
+		} 
+		catch (IOException e) {}
+		
+		return s;
+	}
 	
 	public void make(int totalCount) {
 		this.totalCount = totalCount;

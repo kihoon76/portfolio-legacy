@@ -3,6 +3,7 @@
 	<link rel="stylesheet" href="/resources/plugin/loading/waitMe.css" />
 	<link rel="stylesheet" href="/resources/css/signin.css" />
 	
+	<script type="text/javascript" src="/resources/js/jquery.cookie.js"></script>
 	<script type="text/javascript" src="/resources/plugin/loading/waitMe.js"></script>
 	<script type="text/javascript" src="/resources/js/common.js"></script>
 	<script type="text/javascript" src="/resources/js/signin/signin_c.js"></script>
@@ -32,7 +33,7 @@
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<div class="checkbox">
-			    		<label><input type="checkbox"> id 저장</label>
+			    		<label><input type="checkbox" id="idSave" name="idsave" value="true"> id 저장</label>
 					</div>
 				</div>
 			</div>
