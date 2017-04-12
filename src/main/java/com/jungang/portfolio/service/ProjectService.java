@@ -73,7 +73,15 @@ public class ProjectService {
 		return 1 == projectDao.insertTask(task);
 	}
 
-	public List<Map> getTasks(String pnum) {
-		return projectDao.selectTasks(pnum);
+	public List<Map> getTasks(String pnum, String order) {
+		return projectDao.selectTasks(pnum, order);
+	}
+
+	public boolean checkTaskDupTitle(TaskVO task) {
+		return projectDao.selectTaskDupTitle(task);
+	}
+
+	public List<Map> getTaskForCalendar(String pnum) {
+		return projectDao.selectTaskForCalendar(pnum);
 	}
 }

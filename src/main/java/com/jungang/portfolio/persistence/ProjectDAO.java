@@ -24,6 +24,10 @@ public interface ProjectDAO {
 
 	int insertTask(TaskVO task);
 
-	List<Map> selectTasks(String pnum);
+	List<Map> selectTasks(String pnum, String order);
+
+	boolean selectTaskDupTitle(TaskVO task);
+
+	List<Map> selectTaskForCalendar(String pnum);
 
 }

@@ -20,7 +20,11 @@
 					<table class="table table-bordered table-hover">
 						<tr>
 							<th><input type="checkbox" /></th>	
-							<th><a href="#" id="taskOrder" class="on">#▼</a></th>
+							<th>
+							<a href="/project/details/task?pnum=${pnum}&pname=${pname}&order=${order}" id="taskOrder" class="on" data-order="${order}">
+								<c:if test="${order eq 'desc'}"><c:out value="#▼" /></c:if><c:if test="${order eq 'asc'}"><c:out value="#▲" /></c:if>
+							</a>
+							</th>
 							<th>유형</th>
 							<th>상태</th>
 							<th>우선순위</th>

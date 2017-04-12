@@ -62,7 +62,7 @@
         <li <c:if test="${details eq 'workhistory'}"><c:out value='class="active"' escapeXml="false"/></c:if>><a href="#workhistory" data-toggle="tab" data-project-details="workhistory">작업내역</a></li>
         <li <c:if test="${details eq 'task'}"><c:out value='class="active"' escapeXml="false"/></c:if>><a href="#task" data-toggle="tab" data-project-details="task">일감</a></li>
         <li <c:if test="${details eq 'gantt'}"><c:out value='class="active"' escapeXml="false"/></c:if>><a href="#gantt" data-toggle="tab" data-project-details="gantt">Gantt 차트</a></li>
-        <li <c:if test="${details eq 'calender'}"><c:out value='class="active"' escapeXml="false"/></c:if>><a href="#calender" data-toggle="tab" data-project-details="calender">달력</a></li>
+        <li <c:if test="${details eq 'calendar'}"><c:out value='class="active"' escapeXml="false"/></c:if>><a href="#calender" data-toggle="tab" data-project-details="calendar">달력</a></li>
         <li <c:if test="${details eq 'news'}"><c:out value='class="active"' escapeXml="false"/></c:if>><a href="#news" data-toggle="tab" data-project-details="news">뉴스</a></li>
         <li <c:if test="${details eq 'docs'}"><c:out value='class="active"' escapeXml="false"/></c:if>><a href="#docs" data-toggle="tab" data-project-details="docs">문서</a></li>
         <li <c:if test="${details eq 'bbs'}"><c:out value='class="active"' escapeXml="false"/></c:if>><a href="#bbs" data-toggle="tab" data-project-details="bbs">게시판</a></li>

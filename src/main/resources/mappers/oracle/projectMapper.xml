@@ -85,7 +85,7 @@
 		)
 	</insert>
 	
-	<select id="selectTasks" parameterType="int" resultType="map">
+	<select id="selectTasks" parameterType="map" resultType="map">
 		select t1.NUM, t2.NAME as TYPE_NAME, t3.NAME as STATUS_NAME, t4.NAME as PRIORITY_NAME, TITLE,
 		       t5.F_NAME || t5.S_NAME as RESPONSIBILITY_NAME, t1.WRITE_DATE  
 		  from TASK t1
@@ -97,5 +97,25 @@
 		    on t1.PRIORITY_NUM = t4.NUM
 		 inner join USERS t5
 		    on t1.RESPONSIBILITY_NUM = t5.NUM
+		 where t1.PROJECT_NUM = #{pnum}
+		 order by t1.NUM ${order} 
+	</select>
+	
+	<select id="selectTaskDupTitle" parameterType="Task" resultType="int">
+		select count(NUM)
+		  from TASK
+		 where TITLE = #{title}
+		   and PROJECT_NUM = #{projectNum}
+	</select>
+	
+	<select id="selectTaskForCalendar" parameterType="string" resultType="map">
+		<![CDATA[
+		select TITLE as "title", to_char(START_DATE, 'yyyy-MM-dd')  as "start",
+		       to_char(END_DATE, 'yyyy-MM-dd') as "end"
+		  from TASK
+		 where PROJECT_NUM =#{projectNum}
+		   and START_DATE >= (select trunc(sysdate,'MM') from dual) 
+		   and END_DATE <= (select last_day(sysdate) from dual)
+		 ]]>
 	</select>
 </mapper>

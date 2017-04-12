@@ -1,5 +1,6 @@
 package com.jungang.portfolio.persistence;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -69,8 +70,23 @@ public class ProjectDAOImpl implements ProjectDAO {
 
 
 	@Override
-	public List<Map> selectTasks(String pnum) {
-		return oracleSqlSession.selectList(namespace + ".selectTasks", pnum);
+	public List<Map> selectTasks(String pnum, String order) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("pnum", pnum);
+		map.put("order", order);
+		return oracleSqlSession.selectList(namespace + ".selectTasks", map);
+	}
+
+
+	@Override
+	public boolean selectTaskDupTitle(TaskVO task) {
+		return 0 != (Integer) oracleSqlSession.selectOne(namespace + ".selectTaskDupTitle", task);
+	}
+
+
+	@Override
+	public List<Map> selectTaskForCalendar(String pnum) {
+		return oracleSqlSession.selectList(namespace + ".selectTaskForCalendar", pnum);
 	}
 
 }

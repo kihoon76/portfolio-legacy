@@ -1,11 +1,21 @@
 $(document).ready(function(v,m) {
-	var orderMark = '#▼';
+	
 	return function() {
 	    
 	    $(document).on('click', '#taskOrder', function(event){
-	    	event.preventDefault();
 	    	$(this).toggleClass('on');
-	    	$(this).html((orderMark == '#▼' ? orderMark='#▲' : orderMark='#▲'));
+	    	var href = $(this).attr('href');
+	    	var soonseo = $(this).data('order');
+	    	
+	    	if(soonseo == 'desc') {
+	    		href=href.replace('order=desc', 'order=asc');
+	    	}
+	    	else {
+	    		soonseo = 'desc';
+	    		href=href.replace('order=asc', 'order=desc');
+	    	}
+	    	
+	    	$(this).attr('href', href);
 	    });
 	    
 	}

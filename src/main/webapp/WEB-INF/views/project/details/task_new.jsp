@@ -6,6 +6,7 @@
 <head>
 <title>새일감</title>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
+<link rel="stylesheet" href="/resources/css/validate.css" />
 <script type="text/javascript" src="/resources/plugin/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <script type="text/javascript" src="/resources/js/task/task_new.js"></script>
@@ -90,12 +91,12 @@
 			    	<label for="startDate" class="col-md-2 col-form-label">시작일</label>
 			    	<div class="col-md-4">
 						<form:input path="startDate" cssClass="form-control" />
-						<form:errors path="startDate" />
+						<form:errors path="startDate" cssClass="form-err" />
 			      	</div>
 			      	<label for="endDate" class="col-md-2 col-form-label">종료일</label>
 			    	<div class="col-md-4">
 						<form:input path="endDate" cssClass="form-control" />
-						<form:errors path="endDate" />
+						<form:errors path="endDate" cssClass="form-err" />
 			      	</div>
 			    </div>
 			   	<div class="form-group row">
