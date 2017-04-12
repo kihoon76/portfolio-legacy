@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.jungang.portfolio.domain.ProjectVO;
+import com.jungang.portfolio.domain.TaskVO;
 
 public interface ProjectDAO {
 
@@ -20,5 +21,9 @@ public interface ProjectDAO {
 	int insertProjectUser(List<Map<String, Object>> list);
 
 	List<Map<String, String>> selectProjectUsers(Integer pNum);
+
+	int insertTask(TaskVO task);
+
+	List<Map> selectTasks(String pnum);
 
 }

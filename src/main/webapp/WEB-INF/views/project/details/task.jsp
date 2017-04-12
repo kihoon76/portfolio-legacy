@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" href="/resources/css/project/task.css" />
+<script type="text/javascript" src="/resources/js/task/task_c.js"></script>
 <title>프로젝트 상세</title>
 </head>
 <content tag="item">
@@ -18,7 +20,7 @@
 					<table class="table table-bordered table-hover">
 						<tr>
 							<th><input type="checkbox" /></th>	
-							<th><a href="" >#▼</a></th>
+							<th><a href="#" id="taskOrder" class="on">#▼</a></th>
 							<th>유형</th>
 							<th>상태</th>
 							<th>우선순위</th>
@@ -26,6 +28,18 @@
 							<th>담당자</th>
 							<th>변경</th>
 						</tr>
+						<c:forEach var="task" items="${tasks}">
+						<tr>
+							<td><input type="checkbox" /></td>
+							<td>${task.NUM}</td>
+							<td>${task.TYPE_NAME}</td>
+							<td>${task.STATUS_NAME}</td>
+							<td>${task.PRIORITY_NAME}</td>
+							<td>${task.TITLE}</td>
+							<td>${task.RESPONSIBILITY_NAME}</td>
+							<td>${task.WRITE_DATE}</td>
+						</tr>
+						</c:forEach>
 					</table>
 				</div>
 			</div>

@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
 <script type="text/javascript" src="/resources/plugin/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
-<script type="text/javascript" src="/resources/js/task/task_c.js"></script>
+<script type="text/javascript" src="/resources/js/task/task_new.js"></script>
 </head>
 <content tag="item">
 		<div class="container">
@@ -61,9 +61,9 @@
 			      	</div>
 			    </div>
 			   	<div class="form-group row required">
-			    	<label for="ownerNum" class="col-md-2 col-form-label">담당자</label>
+			    	<label for="responsibilityNum" class="col-md-2 col-form-label">담당자</label>
 			    	<div class="col-md-4">
-			    		<form:select path="ownerNum" cssClass="form-control">
+			    		<form:select path="responsibilityNum" cssClass="form-control">
 						<c:forEach var="taskResponsibility" items="${taskResponsibilities}">
 							<option value="${taskResponsibility.NUM}">${taskResponsibility.F_NAME}${taskResponsibility.S_NAME}(${taskResponsibility.ID})</option>
 						</c:forEach> 
@@ -103,7 +103,8 @@
 			        	<button type="submit" class="btn btn-primary">만들기</button>
 			 		</div>
 			    </div>
-<%--  			    <input type="hidden" name="projectNum" value="${pnum}" />  --%>
+ 			    <input type="hidden" name="projectNum" value="${pnum}" /> 
+ 			    <input type="hidden" name="projectName" value="${pname}" />
 			</form:form>
 			</div>
 		</div>

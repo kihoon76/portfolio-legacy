@@ -69,10 +69,14 @@ public class ProjectController {
 	
 	@GetMapping("/details/{details}")
 	public String details(@PathVariable String details, Model model, @RequestParam("pnum") String pnum, @RequestParam("pname") String pname) {
-		System.err.println("pnum ==> " + pnum + ", pname ==> " + pname);
 		model.addAttribute("details", details);
 		model.addAttribute("pnum", pnum);
 		model.addAttribute("pname", pname);
+		
+		if("task".equals(details)) {
+			List<Map> tasks = projectService.getTasks(pnum);
+			model.addAttribute("tasks", tasks);
+		}
 		return "project/details/" + details;
 	}
 	
@@ -97,8 +101,14 @@ public class ProjectController {
 	}
 	
 	@PostMapping("/details/task/new")
-	public String createTask(@ModelAttribute("taskForm") TaskVO task) {
-		System.err.println("=============ggggg");
-		return "";
+	public String createTask(@Valid @ModelAttribute("taskForm") TaskVO task, BindingResult errors, Model model) {
+		System.err.println(task);
+		
+		UserVO user = (UserVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		task.setWriteUserNum(user.getNum());
+		
+		boolean result = projectService.createTask(task);
+		System.err.println(result);
+		return "redirect:/project/details/task?pnum=" + task.getProjectNum() + "&pname=" + task.getProjectName();
 	}
 }

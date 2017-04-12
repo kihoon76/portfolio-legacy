@@ -69,4 +69,33 @@
     		 on t1.PROJECT_NUM = #{projectNum}
    			and t1.USER_NUM = t2.NUM 
 	</select>
+	
+	<sql id="taskColumn">
+		NUM, TYPE_NUM, TITLE, DESCRIPTION, STATUS_NUM, PRIORITY_NUM, RESPONSIBILITY_NUM, START_DATE, END_DATE, PROGRESS,
+		VIEWER_NUMS, PROJECT_NUM, WRITE_DATE, WRITE_USER_NUM
+	</sql>
+	<insert id="insertTask" parameterType="Task">
+		<selectKey keyProperty="num" keyColumn="NUM" resultType="int" order="BEFORE">
+		select TASK_SEQ.nextval from dual
+		</selectKey>
+		insert into TASK(<include refid="taskColumn" />)
+		values (
+			#{num}, #{typeNum}, #{title}, #{description}, #{statusNum}, #{priorityNum}, #{responsibilityNum}, #{startDate}, #{endDate}, #{progress},
+			'', #{projectNum}, sysdate, #{writeUserNum}
+		)
+	</insert>
+	
+	<select id="selectTasks" parameterType="int" resultType="map">
+		select t1.NUM, t2.NAME as TYPE_NAME, t3.NAME as STATUS_NAME, t4.NAME as PRIORITY_NAME, TITLE,
+		       t5.F_NAME || t5.S_NAME as RESPONSIBILITY_NAME, t1.WRITE_DATE  
+		  from TASK t1
+		 inner join TASK_TYPE t2
+		    on t1.TYPE_NUM = t2.NUM
+		 inner join TASK_STATUS t3
+		    on t1.STATUS_NUM = t3.NUM
+		 inner join TASK_PRIORITY t4
+		    on t1.PRIORITY_NUM = t4.NUM
+		 inner join USERS t5
+		    on t1.RESPONSIBILITY_NUM = t5.NUM
+	</select>
 </mapper>

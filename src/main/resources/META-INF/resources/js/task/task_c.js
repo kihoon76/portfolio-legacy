@@ -1,16 +1,12 @@
 $(document).ready(function(v,m) {
-	
+	var orderMark = '#▼';
 	return function() {
-	    v.initCkeditor({
-	    	target: 'description',
-	    	options: {
-	    		filebrowserImageUploadUrl: "ckeditor/plugins/imgupload.php"
-	    	}
-	    })
 	    
-	    v.initDatePicker({
-	    	targets: ['startDate','endDate']
-	    })
+	    $(document).on('click', '#taskOrder', function(event){
+	    	event.preventDefault();
+	    	$(this).toggleClass('on');
+	    	$(this).html((orderMark == '#▼' ? orderMark='#▲' : orderMark='#▲'));
+	    });
 	    
 	}
 }(

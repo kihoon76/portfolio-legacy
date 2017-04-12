@@ -70,7 +70,7 @@
 	</div>
 	
 	<div class="panel-body">
-    <div class="tab-content" style="height:1100px;">
+    <div class="tab-content" style="height:1500px;">
     	<div class="tab-pane fade in active"  id="${details}"><sitemesh:write property="page.item" /></div>
     </div>
 	</div>

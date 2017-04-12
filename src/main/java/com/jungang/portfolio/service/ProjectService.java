@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jungang.portfolio.domain.ProjectVO;
+import com.jungang.portfolio.domain.TaskVO;
 import com.jungang.portfolio.persistence.ProjectDAO;
 
 @Service
@@ -66,5 +67,13 @@ public class ProjectService {
 
 	public List<Map<String, String>> getProjectUsers(Integer pNum) {
 		return projectDao.selectProjectUsers(pNum);
+	}
+
+	public boolean createTask(TaskVO task) {
+		return 1 == projectDao.insertTask(task);
+	}
+
+	public List<Map> getTasks(String pnum) {
+		return projectDao.selectTasks(pnum);
 	}
 }

@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.jungang.portfolio.domain.ProjectVO;
+import com.jungang.portfolio.domain.TaskVO;
 
 @Repository
 public class ProjectDAOImpl implements ProjectDAO {
@@ -58,6 +59,18 @@ public class ProjectDAOImpl implements ProjectDAO {
 	@Override
 	public List<Map<String, String>> selectProjectUsers(Integer pNum) {
 		return oracleSqlSession.selectList(namespace + ".selectProjectUsers", pNum);
+	}
+
+
+	@Override
+	public int insertTask(TaskVO task) {
+		return oracleSqlSession.insert(namespace + ".insertTask", task);
+	}
+
+
+	@Override
+	public List<Map> selectTasks(String pnum) {
+		return oracleSqlSession.selectList(namespace + ".selectTasks", pnum);
 	}
 
 }
