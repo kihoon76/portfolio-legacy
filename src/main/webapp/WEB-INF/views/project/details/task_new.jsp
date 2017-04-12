@@ -17,7 +17,7 @@
 		<div class="panel panel-primary">
 			<div class="panel-heading" style="padding:10px;">새 일감만들기</div>
 			<div class="panel-body">
-			<form:form cssClass="form-horizontal" modelAttribute="taskForm" method="POST">
+			<form:form cssClass="form-horizontal" modelAttribute="taskForm" method="POST" action="/project/details/task/new">
 				<div class="form-group row required">
 			    	<label for="typeNum" class="col-md-2 col-form-label">유형</label>
 			    	<div class="col-md-8 <c:out value='${idErrCls}' />">
@@ -60,10 +60,10 @@
 						</form:select>
 			      	</div>
 			    </div>
-			    <div class="form-group row required">
-			    	<label for="responsibilityNum" class="col-md-2 col-form-label">담당자</label>
+			   	<div class="form-group row required">
+			    	<label for="ownerNum" class="col-md-2 col-form-label">담당자</label>
 			    	<div class="col-md-4">
-			    		<form:select path="responsibilityNum" cssClass="form-control">
+			    		<form:select path="ownerNum" cssClass="form-control">
 						<c:forEach var="taskResponsibility" items="${taskResponsibilities}">
 							<option value="${taskResponsibility.NUM}">${taskResponsibility.F_NAME}${taskResponsibility.S_NAME}(${taskResponsibility.ID})</option>
 						</c:forEach> 
@@ -103,6 +103,7 @@
 			        	<button type="submit" class="btn btn-primary">만들기</button>
 			 		</div>
 			    </div>
+<%--  			    <input type="hidden" name="projectNum" value="${pnum}" />  --%>
 			</form:form>
 			</div>
 		</div>

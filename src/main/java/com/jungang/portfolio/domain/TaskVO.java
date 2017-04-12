@@ -1,8 +1,10 @@
 package com.jungang.portfolio.domain;
 
+import java.io.IOException;
 import java.util.Date;
 
 import org.apache.ibatis.type.Alias;
+import org.codehaus.jackson.map.ObjectMapper;
 
 @Alias("Task")
 public class TaskVO {
@@ -12,13 +14,25 @@ public class TaskVO {
 	private String description;
 	private int statusNum;
 	private int priorityNum;
-	private int responsibilityNum;
+	private int ownerNum;
 	private Date startDate;
 	private Date endDate;
 	private int progress;
 	private int projectNum;
-	private Date writeDate;
-	private int writeUserNum;
+	private Date writeDate = null;
+	private int writeUserNum = -1;;
+	
+	@Override
+	public String toString() {
+		String s = "";
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			s = mapper.writeValueAsString(this);
+		} 
+		catch (IOException e) {}
+		
+		return s;
+	}
 	
 	public int getTypeNum() {
 		return typeNum;
@@ -49,12 +63,6 @@ public class TaskVO {
 	}
 	public void setPriorityNum(int priorityNum) {
 		this.priorityNum = priorityNum;
-	}
-	public int getResponsibilityNum() {
-		return responsibilityNum;
-	}
-	public void setResponsibilityNum(int responsibilityNum) {
-		this.responsibilityNum = responsibilityNum;
 	}
 	public Date getStartDate() {
 		return startDate;
@@ -91,6 +99,14 @@ public class TaskVO {
 	}
 	public void setWriteUserNum(int writeUserNum) {
 		this.writeUserNum = writeUserNum;
+	}
+
+	public int getOwnerNum() {
+		return ownerNum;
+	}
+
+	public void setOwnerNum(int ownerNum) {
+		this.ownerNum = ownerNum;
 	}
 	
 	

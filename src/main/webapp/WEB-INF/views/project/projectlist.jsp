@@ -51,7 +51,7 @@
             			</td>
             		</tr>
             		<tr>
-            			<td><a href="#">적용</a></td>
+            			<td><button type="button" class="btn btn-success">적용</button></td>
             		</tr>
             	</table>
             </div>

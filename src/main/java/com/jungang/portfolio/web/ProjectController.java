@@ -95,4 +95,10 @@ public class ProjectController {
 		
 		return "project/details/task_new";
 	}
+	
+	@PostMapping("/details/task/new")
+	public String createTask(@ModelAttribute("taskForm") TaskVO task) {
+		System.err.println("=============ggggg");
+		return "";
+	}
 }

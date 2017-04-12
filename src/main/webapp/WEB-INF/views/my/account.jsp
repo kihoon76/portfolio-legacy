@@ -11,8 +11,8 @@
 	<link rel="stylesheet" href="/resources/css/account.css" />
 	
 	<script type="text/javascript" src="/resources/plugin/loading/waitMe.js"></script>
-	<script type="text/javascript" src="/resources/js/account_c.js"></script>
-	<script type="text/javascript" src="/resources/js/account_v.js"></script>
+	<script type="text/javascript" src="/resources/js/account/account_c.js"></script>
+	<script type="text/javascript" src="/resources/js/account/account_v.js"></script>
 </head>
 <body>
 <div class="container">
@@ -44,9 +44,11 @@
             		<div class="col-sm-4 input-group mb-2 mr-sm-2 mb-sm-0" <c:if test="${isEmailDirect eq true}">style="display:none;"</c:if>>
             			<div class="input-group-addon">@</div>
 			            <select class="form-control EMAIL" id="selEmailVender">
-			                <option value="google.com" selected>google.com</option>
-			                <option value="naver.com">naver.com</option>
+			                <c:if test="${isEmailDirect eq false}">
+			                <option value="google.com" <c:if test="${emailVender eq 'google.com'}"><c:out value="selected" /></c:if>>google.com</option>
+			                <option value="naver.com" <c:if test="${emailVender eq 'naver.com'}"><c:out value="selected" /></c:if>>naver.com</option>
 			                <option value="direct">직접입력</option>
+			                </c:if>
 			            </select>
 		            </div>
 		            <div class="col-sm-4 input-group input-group-sm" <c:if test="${isEmailDirect ne true}">style="display:none;"</c:if>>
