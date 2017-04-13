@@ -1,5 +1,7 @@
 package com.jungang.portfolio.web;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 
@@ -115,7 +117,7 @@ public class ProjectController {
 	}
 	
 	@PostMapping("/details/task/new")
-	public String createTask(@Valid @ModelAttribute("taskForm") TaskVO task, BindingResult errors, Model model) {
+	public String createTask(@Valid @ModelAttribute("taskForm") TaskVO task, BindingResult errors, Model model) throws UnsupportedEncodingException {
 		System.err.println(task);
 		
 		//title 중복허용 안함
@@ -144,6 +146,6 @@ public class ProjectController {
 		
 		boolean result = projectService.createTask(task);
 		System.err.println(result);
-		return "redirect:/project/details/task?pnum=" + task.getProjectNum() + "&pname=" + task.getProjectName();
+		return "redirect:/project/details/task?pnum=" + task.getProjectNum() + "&pname=" + URLEncoder.encode(task.getProjectName(), "UTF-8");
 	}
 }
