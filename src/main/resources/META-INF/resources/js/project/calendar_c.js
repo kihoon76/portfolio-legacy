@@ -12,8 +12,8 @@ $(document).ready(function(v, m) {
 			editable: false,
 			eventLimit: true, // allow "more" link when too many events
 			events:calendarData,
-			eventMouseover: function(event) {
-				
+			eventMouseover: function(event, jsEvent, view) {
+				tooltip.setContent(event.title);
 		    }
 		});
 		
